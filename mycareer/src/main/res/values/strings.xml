@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- App name -->
     <string name="app_name">myCareer</string>
 
+    <!-- Facebook AppID -->
+    <string name="app_id">1399229147023269</string>
 
     <!-- Landing Page Strings -->
     <string name="logo_subtitle">A Professions Recommendation System.</string>
 
+    <!-- Strings for Test -->
+    <string name="get_started">To get started, login using Facebook</string>
+    <string name="update_status">Request info</string>
+    <string name="to_personality">To personality view</string>
+    
 </resources>

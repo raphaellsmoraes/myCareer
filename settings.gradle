@@ -1,1 +1,1 @@
-include ':mycareer', 'facebook'
+include ':mycareer', 'facebook', ':library'
