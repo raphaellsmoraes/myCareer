@@ -14,5 +14,10 @@
     <string name="get_started">To get started, login using Facebook</string>
     <string name="update_status">Request info</string>
     <string name="to_personality">To personality view</string>
+
+    <!-- Personality view strings -->
+    <string name="can_name_tab">Can</string>
+    <string name="do_name_tab">Do</string>
+    <string name="are_name_tab">Are</string>
     
 </resources>

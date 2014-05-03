@@ -8,10 +8,10 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\Users\rapha_000\Documents\GitHub\myCareer" />
-            <option value="C:\Users\rapha_000\Documents\GitHub\myCareer\facebook" />
-            <option value="C:\Users\rapha_000\Documents\GitHub\myCareer\library" />
-            <option value="C:\Users\rapha_000\Documents\GitHub\myCareer\mycareer" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/facebook" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/mycareer" />
           </set>
         </option>
       </GradleProjectSettings>
