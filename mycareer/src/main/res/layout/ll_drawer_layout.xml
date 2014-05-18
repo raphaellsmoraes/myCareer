@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/left_drawer"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="start"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
+    android:background="#111">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/top_profile_rl"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_height="50dp">
+
+                <com.facebook.widget.ProfilePictureView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_alignParentLeft="true" />
+
+                <TextView
+                    android:id="@+id/profile_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_toRightOf="@+id/profile_pic"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
+                    android:text="Raphael Moraes" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_trending"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:drawableLeft="@drawable/pin_white"
+                    android:text="@string/menu_trending" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_recommendation"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/white"
+                    android:drawableLeft="@drawable/thumb_up_white"
+                    android:text="@string/menu_recommendations" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_history"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/menu_history" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_personality"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginLeft="@dimen/menu_margin_all"
+                    android:textSize="12sp"
+                    android:paddingTop="@dimen/menu_margin_top"
+                    android:text="@string/menu_personality" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_personality_review"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/menu_personality_review" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_personality_retake"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/menu_personality_retake" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_friends"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginLeft="@dimen/menu_margin_all"
+                    android:textSize="12sp"
+                    android:paddingTop="@dimen/menu_margin_top"
+                    android:text="@string/menu_friends" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_friends_popular"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/menu_friends_popular" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/menu_margin_all"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/menu_margin_top"
+                    android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_friends_spotlight"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/menu_friends_spotlight" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/menu_margin_all"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/menu_margin_top"
+                    android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_settings"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginLeft="@dimen/menu_margin_all"
+                    android:textSize="12sp"
+                    android:paddingTop="@dimen/menu_margin_top"
+                    android:text="@string/menu_settings" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_settings_about"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/menu_settings_about" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/menu_margin_all"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/menu_margin_top"
+                    android:layout_marginRight="@dimen/menu_margin_top"
+                    android:background="@android:color/darker_gray" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_settings_logout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/menu_margin"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="@android:color/white"
+                    android:text="@string/menu_settings_logout" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
