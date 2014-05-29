@@ -2,6 +2,7 @@ package com.rm.mycareer.adapter;
 
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.etsy.android.grid.util.DynamicHeightImageView;
 import com.etsy.android.grid.util.DynamicHeightTextView;
 import com.rm.mycareer.R;
+import com.rm.mycareer.myCareer;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,7 +29,7 @@ public class SampleAdapter extends ArrayAdapter<String> {
     private static final String TAG = "SampleAdapter";
 
     static class ViewHolder {
-        DynamicHeightTextView txtLineOne;
+        DynamicHeightImageView imageLineOne;
         Button btnGo;
     }
 
@@ -36,8 +39,8 @@ public class SampleAdapter extends ArrayAdapter<String> {
 
     private static final SparseArray<Double> sPositionHeightRatios = new SparseArray<Double>();
 
-    public SampleAdapter(final Context context, final int textViewResourceId) {
-        super(context, textViewResourceId);
+    public SampleAdapter(final Context context, final int imageViewResourceId) {
+        super(context, imageViewResourceId);
         mLayoutInflater = LayoutInflater.from(context);
         mRandom = new Random();
         mBackgroundColors = new ArrayList<Integer>();
@@ -55,7 +58,7 @@ public class SampleAdapter extends ArrayAdapter<String> {
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.personality_list_item_sample, parent, false);
             vh = new ViewHolder();
-            vh.txtLineOne = (DynamicHeightTextView) convertView.findViewById(R.id.txt_line1);
+            vh.imageLineOne = (DynamicHeightImageView) convertView.findViewById(R.id.stagImage);
             vh.btnGo = (Button) convertView.findViewById(R.id.btn_go);
 
             convertView.setTag(vh);
@@ -71,8 +74,13 @@ public class SampleAdapter extends ArrayAdapter<String> {
 
         Log.d(TAG, "getView position:" + position + " h:" + positionHeight);
 
-        vh.txtLineOne.setHeightRatio(positionHeight);
-        vh.txtLineOne.setText(getItem(position) + position);
+        vh.imageLineOne.setHeightRatio(positionHeight);
+        if(position <= 48 && position > 0 ){
+            Resources resources = getContext().getResources();
+            final int resourceId = resources.getIdentifier("holland" + position, "drawable",
+                    myCareer.getContext().getPackageName());
+            vh.imageLineOne.setBackground(resources.getDrawable(resourceId));
+        }
 
         vh.btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
