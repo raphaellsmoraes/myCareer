@@ -7,17 +7,17 @@
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants">
 
-    <com.etsy.android.grid.util.DynamicHeightTextView
-        android:id="@+id/txt_line1"
+    <com.etsy.android.grid.util.DynamicHeightImageView
+        android:id="@+id/stagImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:gravity="fill_horizontal"/>
 
     <Button
         android:id="@+id/btn_go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|right"
-        android:text="Go" />
+        android:text="Like" />
 
 </FrameLayout>
