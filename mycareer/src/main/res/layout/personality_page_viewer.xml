@@ -4,19 +4,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0f0f0f">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp">
+            <TextView
+                android:id="@+id/header_personality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+                android:gravity="center_horizontal"
+                android:textColor="@android:color/white"
+                android:text="@string/header_holland"/>
+        </LinearLayout>
 
     <FrameLayout
         android:id="@+id/content_frame"
+        android:layout_marginTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.etsy.android.grid.StaggeredGridView
+        <GridView
             android:id="@+id/grid_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:item_margin="8dp"
-            app:column_count="@integer/grid_column_count" />
+            android:gravity="center"
+            android:stretchMode="columnWidth"
+            android:numColumns="2"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin" />
         
     </FrameLayout>
 
