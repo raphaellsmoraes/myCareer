@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/holland_fl"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_margin">
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="250dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/holland_iv"
+            android:layout_width="200dp"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/holland1" />
+
+        <CheckBox
+            android:id="@+id/holland_cb"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="24dp"
+            android:layout_alignParentEnd="true" />
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:background="#2f2f2f">
+
+            <TextView
+                android:id="@+id/holland_tv"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:paddingRight="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="4dp"
+                android:textSize="14dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:textColor="#AFAFAF" />
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

@@ -12,4 +12,6 @@
     <dimen name="menu_margin">4dp</dimen>
     <dimen name="menu_margin_all">8dp</dimen>
     <dimen name="menu_margin_top">16dp</dimen>
+    
+    <dimen name="activity_margin">8dp</dimen>
 </resources>

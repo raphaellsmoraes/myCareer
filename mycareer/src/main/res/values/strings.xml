@@ -15,15 +15,16 @@
     <string name="update_status">Request info</string>
     <string name="to_personality">To personality view</string>
 
-    <!-- Personality view strings -->
-    <string name="can_name_tab">Can</string>
-    <string name="do_name_tab">Do</string>
-    <string name="are_name_tab">Are</string>
+    <!-- String for Holland -->
+    <string name="button_like">Like</string>
+    <string name="button_dislike">Dislike</string>
 
+    <!-- Personality view strings -->
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="header_holland">Select the items below that are appealing to you</string>
 
 
     <!-- Drawing Menu -->
@@ -39,4 +40,57 @@
     <string name="menu_friends_spotlight">Spotlight</string>
     <string name="menu_settings_about">About</string>
     <string name="menu_settings_logout">Logout</string>
+
+
+    <!-- Holland Strings -->
+    <string name="holland1_string">1. Planting and growing crops</string>
+    <string name="holland2_string">2. Solving math problems</string>
+    <string name="holland3_string">3. Being in a play</string>
+    <string name="holland4_string">4. Studying other cultures</string>
+    <string name="holland5_string">5. Talking to people at a party</string>
+    <string name="holland6_string">6. Working with computers</string>
+    <string name="holland7_string">7. Working on cars or lawnmowers</string>
+    <string name="holland8_string">8. Astronomy</string>
+    <string name="holland9_string">9. Drawing or painting</string>
+    <string name="holland10_string">10. Going to church</string>
+    <string name="holland11_string">11. Working on a sales campaign</string>
+    <string name="holland12_string">12. Using a cash register</string>
+    <string name="holland13_string">13. Carpentry</string>
+    <string name="holland14_string">14. Physics</string>
+    <string name="holland15_string">15. Foreign language</string>
+    <string name="holland16_string">16. Working with youth</string>
+    <string name="holland17_string">17. Buying clothes for a store</string>
+    <string name="holland18_string">18. Working from nine to five</string>
+    <string name="holland19_string">19. Setting type for a printing job</string>
+    <string name="holland20_string">20. Using a chemistry set</string>
+    <string name="holland21_string">21. Reading fiction or plays</string>
+    <string name="holland22_string">22. Helping people with problems</string>
+    <string name="holland23_string">23. Selling life insurance</string>
+    <string name="holland24_string">24. Typing reports</string>
+    <string name="holland25_string">25. Driving a truck</string>
+    <string name="holland26_string">26. Working in a lab</string>
+    <string name="holland27_string">27. Playing a musical instrument</string>
+    <string name="holland28_string">28. Making new friends</string>
+    <string name="holland29_string">29. Leading a group</string>
+    <string name="holland30_string">30. Following a budget</string>
+    <string name="holland31_string">31. Fixing electrical appliances</string>
+    <string name="holland32_string">32. Building rocket models</string>
+    <string name="holland33_string">33. Writing stories or poetry</string>
+    <string name="holland34_string">34. Attending sports events</string>
+    <string name="holland35_string">35. Making your opinions heard</string>
+    <string name="holland36_string">36. Using business machines</string>
+    <string name="holland37_string">37. Building things </string>
+    <string name="holland38_string">38. Doing puzzles</string>
+    <string name="holland39_string">39. Fashion design</string>
+    <string name="holland40_string">40. Belonging to a club</string>
+    <string name="holland41_string">41. Giving talks or speeches</string>
+    <string name="holland42_string">42. Keeping detailed records</string>
+    <string name="holland43_string">43. Wildlife biology</string>
+    <string name="holland44_string">44. Using science to get answers</string>
+    <string name="holland45_string">45. Going to concerts or the theater</string>
+    <string name="holland46_string">46. Working with the elderly</string>
+    <string name="holland47_string">47. Sales people</string>
+    <string name="holland48_string">48. Filing letters and reports</string>
+
+
 </resources>
