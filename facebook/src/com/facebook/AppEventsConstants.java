@@ -18,7 +18,7 @@ package com.facebook;
 
 /**
  * Predefined event and parameter names for logging events common to many apps. Logging occurs through the
- * {@link AppEventsLogger#logEvent(String, android.os.Bundle)} family of methods.
+ * {@link com.facebook.AppEventsLogger#logEvent(String, android.os.Bundle)} family of methods.
  */
 public class AppEventsConstants {
     // Event names
@@ -71,7 +71,7 @@ public class AppEventsConstants {
 
     /**
      * Log this event when the user has completed a purchase.
-     * The {@link AppEventsLogger#logPurchase(java.math.BigDecimal, java.util.Currency)} method is a shortcut for
+     * The {@link com.facebook.AppEventsLogger#logPurchase(java.math.BigDecimal, java.util.Currency)} method is a shortcut for
      * logging this event.
      */
     public static final String EVENT_NAME_PURCHASED = "fb_mobile_purchase";

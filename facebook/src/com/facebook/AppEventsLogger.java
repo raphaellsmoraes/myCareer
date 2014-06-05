@@ -91,7 +91,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * </li>
  * <li>
  * There is a limit to the number of unique parameter names in the provided parameters that can
- * be used per event, on the order of 10.  This is not just for an individual call, but for all
+ * be used per event, on the order of 25.  This is not just for an individual call, but for all
  * invocations for that eventName.
  * </li>
  * <li>
@@ -244,7 +244,7 @@ public class AppEventsLogger {
     }
 
     /**
-     * This method is deprecated.  Use {@link Settings#getLimitEventAndDataUsage(Context)} instead.
+     * This method is deprecated.  Use {@link com.facebook.Settings#getLimitEventAndDataUsage(android.content.Context)} instead.
      */
     @Deprecated
     public static boolean getLimitEventUsage(Context context) {
@@ -252,7 +252,7 @@ public class AppEventsLogger {
     }
 
     /**
-     * This method is deprecated.  Use {@link Settings#setLimitEventAndDataUsage(Context, boolean)} instead.
+     * This method is deprecated.  Use {@link com.facebook.Settings#setLimitEventAndDataUsage(android.content.Context, boolean)} instead.
      */
     @Deprecated
     public static void setLimitEventUsage(Context context, boolean limitEventUsage) {
@@ -264,7 +264,7 @@ public class AppEventsLogger {
      * your app becomes active, typically in the onResume() method of each long-running Activity of your app.
      *
      * Use this method if your application ID is stored in application metadata, otherwise see
-     * {@link AppEventsLogger#activateApp(android.content.Context, String)}.
+     * {@link com.facebook.AppEventsLogger#activateApp(android.content.Context, String)}.
      *
      * @param context   Used to access the applicationId and the attributionId for non-authenticated users.
      */
