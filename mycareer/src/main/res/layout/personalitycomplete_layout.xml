@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0f0f0f">
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_personality_header"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/riasec_header"
+                android:textColor="#f0f0f0"
+                android:textSize="32dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_personality_result"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_below="@+id/tv_personality_header"
+                android:textColor="#f0f0f0"
+                android:textSize="32dp"
+                android:gravity="center" />
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <include layout="@layout/ll_drawer_layout" />
+
+</android.support.v4.widget.DrawerLayout>

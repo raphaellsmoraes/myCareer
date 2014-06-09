@@ -1,18 +1,10 @@
 package com.rm.mycareer.utils;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.util.Base64;
-import android.util.Log;
 
 import com.rm.mycareer.myCareer;
-import com.rm.mycareer.view.BaseActivity;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.Signature;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +15,7 @@ public class myCareerUtils {
 
     public static final String ACCESS_EXPIRES = "access_expires";
     public static final String ACCESS_TOKEN = "access_token";
+    public static final String PERSONALITY = "riasec_boolean";
     public static final String APP_ID = getStringResourceByName("app_id");
 
     public static Drawable getDrawable(String name) {
