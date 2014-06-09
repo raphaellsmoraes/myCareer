@@ -1,9 +1,12 @@
 package com.rm.mycareer.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.echo.holographlibrary.PieGraph;
+import com.echo.holographlibrary.PieSlice;
 import com.rm.mycareer.R;
 import com.rm.mycareer.utils.myCareerUtils;
 
@@ -21,6 +24,7 @@ import java.util.Map;
  */
 public class PersonalityCompleteView extends BaseActivity {
 
+    int[] hollandArray = new int[6];
     private boolean[] hollandSelection;
     private static int realistic = 0;
     private static int investigative = 1;
@@ -52,7 +56,6 @@ public class PersonalityCompleteView extends BaseActivity {
 
     private void buildRIASEC() {
         String riasec = "";
-        int[] hollandArray = new int[6];
         int R = 0, I = 1, A = 2, S = 3, E = 4, C = 5;
 
 
@@ -97,7 +100,7 @@ public class PersonalityCompleteView extends BaseActivity {
         Log.d("riasectest", returnMap.toString());
 
         answer.setText(returnMap.keySet().toString());
-
+        buildGraph();
     }
 
     static Map sortByValue(Map map) {
@@ -118,6 +121,54 @@ public class PersonalityCompleteView extends BaseActivity {
             i++;
         }
         return result;
+    }
+
+    private void buildGraph(){
+        PieGraph pg = (PieGraph)findViewById(R.id.graph);
+        pg.setInnerCircleRatio(100);
+
+        /* realistic */
+        PieSlice slice = new PieSlice();
+        slice.setColor(Color.parseColor("#99CC00"));
+        slice.setValue(hollandArray[realistic]);
+        slice.setTitle(new String("Realistic"));
+        pg.addSlice(slice);
+
+        /* investigative */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#FFBB33"));
+        slice.setValue(hollandArray[investigative]);
+        slice.setTitle(new String("Investigative"));
+        pg.addSlice(slice);
+
+        /* artistic */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#AA66CC"));
+        slice.setValue(hollandArray[artistic]);
+        slice.setTitle(new String("Artistic"));
+        pg.addSlice(slice);
+
+        /* social */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#DDFFAA"));
+        slice.setValue(hollandArray[social]);
+        slice.setTitle(new String("Social"));
+        pg.addSlice(slice);
+
+        /* enterprising */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#FF0033"));
+        slice.setValue(hollandArray[enterprising]);
+        slice.setTitle(new String("Enterprising"));
+        pg.addSlice(slice);
+
+        /* conventional */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#BBFF33"));
+        slice.setValue(hollandArray[conventional]);
+        slice.setTitle(new String("Conventional"));
+        pg.addSlice(slice);
+
     }
 
 }

@@ -28,13 +28,19 @@
                 android:textSize="32dp"
                 android:gravity="center" />
 
+            <com.echo.holographlibrary.PieGraph
+                android:id="@+id/graph"
+                android:layout_below="@+id/tv_personality_header"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
             <TextView
                 android:id="@+id/tv_personality_result"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_below="@+id/tv_personality_header"
+                android:layout_below="@+id/graph"
                 android:textColor="#f0f0f0"
                 android:textSize="32dp"
                 android:gravity="center" />

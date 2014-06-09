@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':facebook')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':libs/facebook')
+    compile project(':libs/HoloGraphLibrary')
 }
