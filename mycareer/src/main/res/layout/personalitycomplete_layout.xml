@@ -3,28 +3,27 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#0f0f0f">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/content_frame"
-        android:layout_marginTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/holo_gray">
 
             <TextView
                 android:id="@+id/tv_personality_header"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/riasec_header"
-                android:textColor="#f0f0f0"
+                android:textColor="@color/holo_black"
                 android:textSize="32dp"
                 android:gravity="center" />
 
@@ -32,18 +31,20 @@
                 android:id="@+id/graph"
                 android:layout_below="@+id/tv_personality_header"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="180dp" />
 
-            <TextView
-                android:id="@+id/tv_personality_result"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
+            <ListView
+                android:id="@+id/lv_personality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_below="@+id/graph"
-                android:textColor="#f0f0f0"
-                android:textSize="32dp"
+                android:scrollbars="none"
+                android:background="@drawable/border_ui"
                 android:gravity="center" />
+
         </RelativeLayout>
 
     </FrameLayout>

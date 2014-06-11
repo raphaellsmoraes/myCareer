@@ -3,11 +3,13 @@ package com.rm.mycareer.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieSlice;
 import com.rm.mycareer.R;
+import com.rm.mycareer.adapter.PersonalityListAdapter;
 import com.rm.mycareer.utils.myCareerUtils;
 
 import java.util.Collections;
@@ -32,14 +34,14 @@ public class PersonalityCompleteView extends BaseActivity {
     private static int social = 3;
     private static int enterprising = 4;
     private static int conventional = 5;
-    private static String sRealistic = "R";
-    private static String sInvestigative = "I";
-    private static String sArtistic = "A";
-    private static String sSocial = "S";
-    private static String sEnterprising = "E";
-    private static String sConventional = "C";
+    private static String sRealistic = "Realistic";
+    private static String sInvestigative = "Investigative";
+    private static String sArtistic = "Artistic";
+    private static String sSocial = "Social";
+    private static String sEnterprising = "Enterprising";
+    private static String sConventional = "Conventional";
 
-    private TextView answer;
+    private ListView answerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class PersonalityCompleteView extends BaseActivity {
 
         Bundle bundle = getIntent().getExtras();
         hollandSelection = bundle.getBooleanArray(myCareerUtils.PERSONALITY);
-        answer = (TextView) findViewById(R.id.tv_personality_result);
+        answerList = (ListView) findViewById(R.id.lv_personality);
         buildRIASEC();
     }
 
@@ -84,22 +86,19 @@ public class PersonalityCompleteView extends BaseActivity {
             looper++;
         }
 
-        Log.d("riasectest", "R:" + hollandArray[realistic] + "I:" + hollandArray[investigative]
-                + "A:" + hollandArray[artistic] + "S:" + hollandArray[social] + "E:" + hollandArray[enterprising]
-                + "R:" + hollandArray[conventional]);
+        Map<String, Integer> hollandMap = new HashMap<String, Integer>();
+        hollandMap.put(sRealistic, hollandArray[realistic]);
+        hollandMap.put(sInvestigative, hollandArray[investigative]);
+        hollandMap.put(sArtistic, hollandArray[artistic]);
+        hollandMap.put(sSocial, hollandArray[social]);
+        hollandMap.put(sEnterprising, hollandArray[enterprising]);
+        hollandMap.put(sConventional, hollandArray[conventional]);
 
-        Map<String, Integer> lMap = new HashMap<String, Integer>();
-        lMap.put(sRealistic, hollandArray[realistic]);
-        lMap.put(sInvestigative, hollandArray[investigative]);
-        lMap.put(sArtistic, hollandArray[artistic]);
-        lMap.put(sSocial, hollandArray[social]);
-        lMap.put(sEnterprising, hollandArray[enterprising]);
-        lMap.put(sConventional, hollandArray[conventional]);
+        /* returns your riasec type */
+        Map<String, Integer> returnMap = sortByValue(hollandMap);
+        PersonalityListAdapter adapter = new PersonalityListAdapter(returnMap);
+        answerList.setAdapter(adapter);
 
-        Map<String, Integer> returnMap = sortByValue(lMap);
-        Log.d("riasectest", returnMap.toString());
-
-        answer.setText(returnMap.keySet().toString());
         buildGraph();
     }
 
@@ -123,9 +122,9 @@ public class PersonalityCompleteView extends BaseActivity {
         return result;
     }
 
-    private void buildGraph(){
-        PieGraph pg = (PieGraph)findViewById(R.id.graph);
-        pg.setInnerCircleRatio(100);
+    private void buildGraph() {
+        PieGraph pg = (PieGraph) findViewById(R.id.graph);
+        pg.setInnerCircleRatio(150);
 
         /* realistic */
         PieSlice slice = new PieSlice();
