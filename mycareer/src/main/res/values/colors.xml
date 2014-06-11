@@ -12,8 +12,8 @@
     <color name="list_item_pressed">#1A000000</color>
 
     <color name="holo_black">#313131</color>
-    <color name="holo_dark_gray">#D0D0D0</color>
-    <color name="holo_gray">#F0F0F0</color>
-    <color name="holo_light_blue">#33B5E5</color>
-    <color name="holo_blue">#56B8D8</color>
+    <color name="holo_dark_gray">#d0d0d0</color>
+    <color name="holo_gray">#f0f0f0</color>
+    <color name="holo_light_blue">#33b5e5</color>
+    <color name="holo_blue">#56b8d8</color>
 </resources>

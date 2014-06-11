@@ -1,8 +1,16 @@
 package com.rm.mycareer.view;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -10,6 +18,7 @@ import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieSlice;
 import com.rm.mycareer.R;
 import com.rm.mycareer.adapter.PersonalityListAdapter;
+import com.rm.mycareer.myCareer;
 import com.rm.mycareer.utils.myCareerUtils;
 
 import java.util.Collections;
@@ -24,7 +33,7 @@ import java.util.Map;
 /**
  * Created by rapha_000 on 08/06/2014.
  */
-public class PersonalityCompleteView extends BaseActivity {
+public class PersonalityCompleteView extends Activity {
 
     int[] hollandArray = new int[6];
     private boolean[] hollandSelection;
@@ -96,9 +105,29 @@ public class PersonalityCompleteView extends BaseActivity {
 
         /* returns your riasec type */
         Map<String, Integer> returnMap = sortByValue(hollandMap);
-        PersonalityListAdapter adapter = new PersonalityListAdapter(returnMap);
+        final PersonalityListAdapter adapter = new PersonalityListAdapter(returnMap);
         answerList.setAdapter(adapter);
+        final Context context = this;
+        answerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                LayoutInflater inflater = getLayoutInflater();
+                View inflaterView = inflater.inflate(com.rm.mycareer.R.layout.personality_card_layout, null);
+                Log.d("teste",adapterView.getAdapter().toString());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(inflaterView)
+                        .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                builder.create();
+                builder.show();
+            }
+        });
         buildGraph();
     }
 
