@@ -2,7 +2,6 @@ package com.rm.mycareer.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -18,7 +17,6 @@ import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieSlice;
 import com.rm.mycareer.R;
 import com.rm.mycareer.adapter.PersonalityListAdapter;
-import com.rm.mycareer.myCareer;
 import com.rm.mycareer.utils.myCareerUtils;
 
 import java.util.Collections;
@@ -67,14 +65,14 @@ public class PersonalityCompleteView extends Activity {
 
     private void buildRIASEC() {
         String riasec = "";
-        int R = 0, I = 1, A = 2, S = 3, E = 4, C = 5;
+        int _R = 0, I = 1, A = 2, S = 3, E = 4, C = 5;
 
 
         int looper = 0;
         for (Boolean bool : hollandSelection) {
-            if (looper == R) {
+            if (looper == _R) {
                 if (bool) hollandArray[realistic] = hollandArray[realistic] + 1;
-                R = R + 6;
+                _R = _R + 6;
             } else if (looper == I) {
                 if (bool) hollandArray[investigative] = hollandArray[investigative] + 1;
                 I = I + 6;
@@ -114,8 +112,34 @@ public class PersonalityCompleteView extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 LayoutInflater inflater = getLayoutInflater();
-                View inflaterView = inflater.inflate(com.rm.mycareer.R.layout.personality_card_layout, null);
-                Log.d("teste",adapterView.getAdapter().toString());
+                View inflaterView = inflater.inflate(R.layout.personality_card_layout, null);
+
+                TextView textHeader = (TextView) inflaterView.findViewById(R.id.tv_card_header);
+                TextView textDesc = (TextView) inflaterView.findViewById(R.id.tv_card_desc);
+
+
+                Log.d("teste", adapter.getItem(i).toString());
+
+                if (adapter.getItem(i).toString().equals(sRealistic)) {
+                    textHeader.setText(R.string.realistic_header);
+                    textDesc.setText(R.string.realistic_description);
+                } else if (adapter.getItem(i).toString().equals(sInvestigative)) {
+                    textHeader.setText(R.string.investigative_header);
+                    textDesc.setText(R.string.investigative_description);
+                } else if (adapter.getItem(i).toString().equals(sArtistic)) {
+                    textHeader.setText(R.string.artistic_header);
+                    textDesc.setText(R.string.artistic_description);
+                } else if (adapter.getItem(i).toString().equals(sSocial)) {
+                    textHeader.setText(R.string.social_header);
+                    textDesc.setText(R.string.social_description);
+                } else if (adapter.getItem(i).toString().equals(sEnterprising)) {
+                    textHeader.setText(R.string.enterprising_header);
+                    textDesc.setText(R.string.enterprising_description);
+                } else if (adapter.getItem(i).toString().equals(sConventional)) {
+                    textHeader.setText(R.string.conventional_header);
+                    textDesc.setText(R.string.conventional_description);
+                }
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setView(inflaterView)
                         .setPositiveButton("Done", new DialogInterface.OnClickListener() {

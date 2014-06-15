@@ -36,7 +36,7 @@ public class PersonalityListAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return personalityMap.get(i);
+        return personalityMap.keySet().toArray()[i];
     }
 
     @Override

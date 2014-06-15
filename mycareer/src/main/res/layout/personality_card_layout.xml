@@ -3,7 +3,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:focusable="false"
+    android:clickable="false">
 
     <FrameLayout
         android:id="@+id/fl_title"
@@ -14,24 +16,31 @@
             android:id="@+id/iv_title"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:focusable="false"
+            android:clickable="false"
             android:background="@color/holo_black" />
 
         <TextView
+            android:id="@+id/tv_card_header"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/holo_gray"
             android:gravity="center_vertical"
             android:textSize="24dp"
-            android:paddingLeft="8dp" />
+            android:paddingLeft="8dp"
+            android:focusable="false"
+            android:clickable="false" />
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tv_personality_desc"
+        android:id="@+id/tv_card_desc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="8dp"
         android:layout_below="@+id/fl_title"
         android:textSize="16dp"
-        android:textColor="@color/holo_black" />
+        android:textColor="@color/holo_black"
+        android:focusable="false"
+        android:clickable="false" />
 </RelativeLayout>
