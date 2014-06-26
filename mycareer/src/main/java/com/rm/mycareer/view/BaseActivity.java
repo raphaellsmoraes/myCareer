@@ -1,5 +1,6 @@
 package com.rm.mycareer.view;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.HttpMethod;
@@ -45,14 +47,14 @@ public class BaseActivity extends FragmentActivity {
         // Initilization
 
         mTitle = mDrawerTitle = getTitle();
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        mDrawerList = (LinearLayout)findViewById(R.id.left_drawer);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (LinearLayout) findViewById(R.id.left_drawer);
 
         //set a custom shadow that overlays the main content when drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        final ProfilePictureView profile = (ProfilePictureView)findViewById(R.id.profile_pic);
-        final TextView profile_user = (TextView)findViewById(R.id.profile_username);
+        final ProfilePictureView profile = (ProfilePictureView) findViewById(R.id.profile_pic);
+        final TextView profile_user = (TextView) findViewById(R.id.profile_username);
 
         Bundle params = new Bundle();
         params.putString("fields", "id,name");
@@ -84,7 +86,7 @@ public class BaseActivity extends FragmentActivity {
                 R.drawable.ic_drawer,
                 R.string.drawer_open,
                 R.string.drawer_close
-        ){
+        ) {
             public void onDrawerClosed(View view) {
                 getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
@@ -95,8 +97,6 @@ public class BaseActivity extends FragmentActivity {
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
-
-
     }
 }
 

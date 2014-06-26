@@ -2,6 +2,7 @@ package com.rm.mycareer.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import com.rm.mycareer.myCareer;
 
@@ -17,6 +18,11 @@ public class myCareerUtils {
     public static final String ACCESS_TOKEN = "access_token";
     public static final String PERSONALITY = "riasec_boolean";
     public static final String APP_ID = getStringResourceByName("app_id");
+
+    public static final boolean API_10 = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
+    public static final boolean API_11 = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+    public static final boolean API_14 = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+    public static final boolean API_19 = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
     public static Drawable getDrawable(String name) {
 

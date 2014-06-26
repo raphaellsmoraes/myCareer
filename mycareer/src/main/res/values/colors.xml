@@ -11,9 +11,13 @@
     <color name="red">#fff10800</color>
     <color name="list_item_pressed">#1A000000</color>
 
+    <!-- google color schema -->
     <color name="holo_black">#313131</color>
     <color name="holo_dark_gray">#d0d0d0</color>
     <color name="holo_gray">#f0f0f0</color>
     <color name="holo_light_blue">#33b5e5</color>
     <color name="holo_blue">#56b8d8</color>
+
+
+
 </resources>
