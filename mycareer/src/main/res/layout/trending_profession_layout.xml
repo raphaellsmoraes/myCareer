@@ -140,8 +140,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:paddingBottom="2dp"
-                    android:paddingLeft="2dp"
-                    android:src="@drawable/small_computer_science" />
+                    android:paddingLeft="2dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

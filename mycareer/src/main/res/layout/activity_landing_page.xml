@@ -4,8 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#252530"
-    tools:context="${packageName}.${activityClass}" >
+    android:background="@drawable/landing1"
+    tools:context="${packageName}.${activityClass}">
+
+    <ImageView
+        android:id="@+id/iv_landingLogo"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:background="@drawable/flatrocket" />
+
+    <TextView
+        android:id="@+id/tv_landingLogo"
+        android:layout_height="@dimen/toaster_size"
+        android:layout_width="match_parent"
+        android:layout_toRightOf="@+id/iv_landingLogo"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="@dimen/header_height"
+        android:textColor="@color/holo_gray"
+        android:text="@string/app_name"/>
 
     <com.facebook.widget.LoginButton
         android:id="@+id/fb_login_button"
@@ -16,6 +35,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         facebook:confirm_logout="false"
-        facebook:fetch_user_info="true"/>
+        facebook:fetch_user_info="true" />
 
 </RelativeLayout>

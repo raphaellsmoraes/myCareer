@@ -24,7 +24,7 @@
             <RelativeLayout
                 android:id="@+id/top_profile_rl"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_marginTop="@dimen/margin_default"
                 android:layout_height="50dp">
 
                 <com.facebook.widget.ProfilePictureView
@@ -72,7 +72,7 @@
                     android:layout_width="fill_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
@@ -94,7 +94,7 @@
                     android:layout_width="fill_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
@@ -115,14 +115,14 @@
                     android:layout_width="fill_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_personality"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_marginTop="@dimen/margin_default"
                 android:layout_height="35dp">
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:textColor="@android:color/darker_gray"
                     android:layout_marginLeft="@dimen/menu_margin_all"
                     android:textSize="12sp"
-                    android:paddingTop="@dimen/menu_margin_top"
+                    android:paddingTop="@dimen/margin_default"
                     android:text="@string/menu_personality" />
 
                 <View
@@ -159,7 +159,7 @@
                     android:layout_width="fill_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
@@ -180,14 +180,14 @@
                     android:layout_width="fill_parent"
                     android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/menu_margin_top"                     android:layout_marginRight="@dimen/menu_margin_top"
+                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_friends"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_marginTop="@dimen/margin_default"
                 android:layout_height="35dp">
 
                 <TextView
@@ -197,7 +197,7 @@
                     android:textColor="@android:color/darker_gray"
                     android:layout_marginLeft="@dimen/menu_margin_all"
                     android:textSize="12sp"
-                    android:paddingTop="@dimen/menu_margin_top"
+                    android:paddingTop="@dimen/margin_default"
                     android:text="@string/menu_friends" />
 
                 <View
@@ -226,8 +226,8 @@
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/menu_margin_all"
                     android:layout_marginBottom="@dimen/menu_margin_all"
-                    android:layout_marginLeft="@dimen/menu_margin_top"
-                    android:layout_marginRight="@dimen/menu_margin_top"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
@@ -250,15 +250,15 @@
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/menu_margin_all"
                     android:layout_marginBottom="@dimen/menu_margin_all"
-                    android:layout_marginLeft="@dimen/menu_margin_top"
-                    android:layout_marginRight="@dimen/menu_margin_top"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_settings"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin_top"
+                android:layout_marginTop="@dimen/margin_default"
                 android:layout_height="35dp">
 
                 <TextView
@@ -268,7 +268,7 @@
                     android:textColor="@android:color/darker_gray"
                     android:layout_marginLeft="@dimen/menu_margin_all"
                     android:textSize="12sp"
-                    android:paddingTop="@dimen/menu_margin_top"
+                    android:paddingTop="@dimen/margin_default"
                     android:text="@string/menu_settings" />
 
                 <View
@@ -297,8 +297,8 @@
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/menu_margin_all"
                     android:layout_marginBottom="@dimen/menu_margin_all"
-                    android:layout_marginLeft="@dimen/menu_margin_top"
-                    android:layout_marginRight="@dimen/menu_margin_top"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
