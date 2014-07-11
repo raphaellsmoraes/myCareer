@@ -19,6 +19,9 @@
     <dimen name="layer_width">300dp</dimen>
     <dimen name="offset_width">48dp</dimen>
 
+    <!-- Card size -->
+    <dimen name="personality_card_width">160dp</dimen>
+    <dimen name="personality_card_height">220dp</dimen>
 
     <!-- New google base dimens -->
     <dimen name="title_align">24dp</dimen>

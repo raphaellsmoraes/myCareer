@@ -35,7 +35,7 @@
 
         <activity
             android:name="com.rm.mycareer.view.PersonalityCompleteView"
-            android:theme="@style/myCareerTheme"
+            android:theme="@style/Theme.Mycareer"
             android:screenOrientation="portrait" />
 
         <activity

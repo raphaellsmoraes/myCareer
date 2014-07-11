@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f0f0f">
+    android:background="@color/holo_gray">
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
                 android:gravity="center_horizontal"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/darker_gray"
                 android:text="@string/header_holland"/>
         </LinearLayout>
 
@@ -32,9 +32,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:stretchMode="columnWidth"
-            android:numColumns="2"
-            android:paddingLeft="@dimen/activity_margin"
-            android:paddingRight="@dimen/activity_margin" />
+            android:verticalSpacing="8dp"
+            android:numColumns="2"/>
         
     </FrameLayout>
 
