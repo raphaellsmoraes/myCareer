@@ -18,6 +18,7 @@ public class myCareerUtils {
     public static final String ACCESS_TOKEN = "access_token";
     public static final String PERSONALITY = "riasec_boolean";
     public static final String APP_ID = getStringResourceByName("app_id");
+    public static final String ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";
 
     public static final boolean API_10 = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
     public static final boolean API_11 = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;

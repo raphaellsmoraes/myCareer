@@ -32,6 +32,13 @@ public class LandingPage extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
+
+        if (Session.getActiveSession().isOpened()) {
+            Intent intent = new Intent(this, PersonalityView.class);
+            startActivity(intent);
+        } else {
+            Log.d("Session", "tá fechada =/");
+        }
     }
 
     @Override
@@ -50,6 +57,13 @@ public class LandingPage extends FragmentActivity {
     @Override
     public void onResume() {
         super.onResume();
+
+        if (Session.getActiveSession().isOpened()) {
+            Intent intent = new Intent(this, PersonalityView.class);
+            startActivity(intent);
+        } else {
+            Log.d("Session", "tá fechada =/");
+        }
     }
 
 

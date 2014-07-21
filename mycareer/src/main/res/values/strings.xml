@@ -108,4 +108,9 @@
     <string name="social_description">Social occupations frequently involve working with, communicating with, and teaching people. These occupations often involve helping or providing service to others</string>
     <string name="enterprising_description">Enterprising occupations frequently involve starting up and carrying out projects. These occupations can involve leading people and making many decisions. Sometimes they require risk taking and often deal with business</string>
     <string name="conventional_description">Conventional occupations frequently involve following set procedures and routines. These occupations can include working with data and details more than with ideas. Usually there is a clear line of authority to follow</string>
+
+    <string name="overflow">Menu Overflow</string>
+    <string name="desc">Description</string>
+    <string name="title">Title</string>
+    <string name="color_stripe">Color Stripe</string>
 </resources>

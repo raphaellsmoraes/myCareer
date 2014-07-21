@@ -23,4 +23,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':libs/facebook')
     compile project(':libs/HoloGraphLibrary')
+    compile project(':CardsUILib')
 }
