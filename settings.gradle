@@ -1,3 +1,4 @@
 include ':mycareer', 'libs/facebook', 'libs/HoloGraphLibrary', ':HoloGraphLibrary', ':facebook', ':CardsUILib'
 project(':HoloGraphLibrary').projectDir = new File('libs/HoloGraphLibrary')
 project(':facebook').projectDir = new File('libs/facebook')
+project(':CardsUILib').projectDir = new File('libs/CardsUILib')
