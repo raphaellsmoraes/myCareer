@@ -4,12 +4,12 @@
     android:id="@+id/left_drawer"
     android:layout_width="240dp"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_gravity="start"
+    android:background="@color/holo_gray"
     android:choiceMode="singleChoice"
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
-    android:background="@color/holo_gray">
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,302 +17,334 @@
         android:scrollbars="none">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/top_profile_rl"
                 android:layout_width="match_parent"
                 android:layout_height="125dp">
 
-                <com.facebook.widget.ProfilePictureView
-                    android:id="@+id/profile_pic"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginBottom="4dp"
-                    android:layout_alignParentLeft="true" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/profile_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:layout_toRightOf="@+id/profile_pic"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="18sp"
-                    android:text="Raphael Moraes" />
+                    <ImageView
+                        android:id="@+id/top_profile_iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"/>
+
+                    <RelativeLayout
+                        android:id="@+id/top_profile_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="125dp">
+
+                        <com.facebook.widget.ProfilePictureView
+                            android:id="@+id/profile_pic"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="36dp" />
+
+                        <TextView
+                            android:id="@+id/profile_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="8dp"
+                            android:layout_toRightOf="@+id/profile_pic"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="Raphael Moraes"
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+                </FrameLayout>
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_trending"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/holo_black"
                     android:drawableLeft="@drawable/pin_white"
-                    android:text="@string/menu_trending" />
+                    android:gravity="center_vertical"
+                    android:text="@string/menu_trending"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_recommendation"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/holo_black"
                     android:drawableLeft="@drawable/thumb_up_white"
-                    android:text="@string/menu_recommendations" />
+                    android:gravity="center_vertical"
+                    android:text="@string/menu_recommendations"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_history"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/holo_black"
-                    android:text="@string/menu_history" />
+                    android:text="@string/menu_history"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_personality"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/margin_default"
-                android:layout_height="35dp">
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/margin_default">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textColor="@android:color/holo_blue_dark"
                     android:layout_marginLeft="@dimen/menu_margin_all"
-                    android:textSize="12sp"
+                    android:gravity="center_vertical"
                     android:paddingTop="@dimen/margin_default"
-                    android:text="@string/menu_personality" />
+                    android:text="@string/menu_personality"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="12sp" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_personality_review"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/holo_black"
-                    android:text="@string/menu_personality_review" />
+                    android:text="@string/menu_personality_review"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_personality_retake"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/holo_black"
-                    android:text="@string/menu_personality_retake" />
+                    android:text="@string/menu_personality_retake"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                                        android:layout_marginTop="@dimen/menu_margin_all"                     android:layout_marginBottom="@dimen/menu_margin_all"                     android:layout_marginLeft="@dimen/margin_default"                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/menu_margin_all"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_friends"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/margin_default"
-                android:layout_height="35dp">
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/margin_default">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textColor="@android:color/holo_blue_dark"
                     android:layout_marginLeft="@dimen/menu_margin_all"
-                    android:textSize="12sp"
+                    android:gravity="center_vertical"
                     android:paddingTop="@dimen/margin_default"
-                    android:text="@string/menu_friends" />
+                    android:text="@string/menu_friends"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="12sp" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_friends_popular"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/holo_black"
-                    android:text="@string/menu_friends_popular" />
+                    android:text="@string/menu_friends_popular"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                    android:layout_marginTop="@dimen/menu_margin_all"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/menu_margin_all"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_friends_spotlight"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/holo_black"
-                    android:text="@string/menu_friends_spotlight" />
+                    android:text="@string/menu_friends_spotlight"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                    android:layout_marginTop="@dimen/menu_margin_all"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/menu_margin_all"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_settings"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/margin_default"
-                android:layout_height="35dp">
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/margin_default">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textColor="@android:color/holo_blue_dark"
                     android:layout_marginLeft="@dimen/menu_margin_all"
-                    android:textSize="12sp"
+                    android:gravity="center_vertical"
                     android:paddingTop="@dimen/margin_default"
-                    android:text="@string/menu_settings" />
+                    android:text="@string/menu_settings"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="12sp" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_settings_about"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/holo_black"
-                    android:text="@string/menu_settings_about" />
+                    android:text="@string/menu_settings_about"
+                    android:textColor="@color/holo_black" />
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_alignParentBottom="true"
                     android:layout_height="0.5dp"
-                    android:layout_marginTop="@dimen/menu_margin_all"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginBottom="@dimen/menu_margin_all"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/menu_margin_all"
                     android:background="@android:color/darker_gray" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_settings_logout"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/menu_margin"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="@color/holo_black"
-                    android:text="@string/menu_settings_logout" />
+                    android:text="@string/menu_settings_logout"
+                    android:textColor="@color/holo_black" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

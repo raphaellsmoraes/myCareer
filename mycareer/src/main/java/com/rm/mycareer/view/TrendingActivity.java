@@ -1,25 +1,20 @@
 package com.rm.mycareer.view;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.fima.cardsui.objects.CardStack;
 import com.fima.cardsui.views.CardUI;
 import com.rm.mycareer.R;
-import com.rm.mycareer.model.myCareerWebService;
 import com.rm.mycareer.utils.AsyncTaskCompleteListener;
 import com.rm.mycareer.utils.myCareerUtils;
-
-import org.json.JSONArray;
 
 /**
  * Created by vntramo on 6/26/2014.
  */
-public class TrendingActivity extends BaseActivity implements AsyncTaskCompleteListener {
+public class TrendingActivity extends BaseActivity{
     private CardUI mCardView;
 
     @Override
@@ -51,18 +46,5 @@ public class TrendingActivity extends BaseActivity implements AsyncTaskCompleteL
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void onTaskComplete(String result, int statusCode, int requestCode) {
-
-        myCareerWebService webService = new myCareerWebService(myCareerUtils.ONET_BASE_URL + "17-2051.00");
-        String resultado = webService.getEstados();
-        Log.d("TESTE", resultado);
-    }
-
-    @Override
-    public void onCommandFinished(boolean result) {
-
     }
 }

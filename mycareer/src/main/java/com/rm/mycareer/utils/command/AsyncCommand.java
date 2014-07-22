@@ -11,6 +11,8 @@ import android.os.AsyncTask.Status;
 
 import com.rm.mycareer.utils.myCareerUtils;
 
+import java.io.IOException;
+import java.net.ProtocolException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -64,7 +66,11 @@ public abstract class AsyncCommand {
     public final void startSync() {
         boolean result = false;
         if (onPreExecute()) {
-            result = execute();
+            try {
+                result = execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         onPostExecute(result);
         if (mListener != null) {
@@ -97,7 +103,7 @@ public abstract class AsyncCommand {
         return true;
     }
 
-    protected boolean execute() {
+    protected boolean execute() throws IOException {
         return true;
     }
 
@@ -108,7 +114,11 @@ public abstract class AsyncCommand {
         @Override
         protected Boolean doInBackground(Void... params) {
             if (AsyncCommand.this.onPreExecute()) {
-                return AsyncCommand.this.execute();
+                try {
+                    return AsyncCommand.this.execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             return false;
         }
