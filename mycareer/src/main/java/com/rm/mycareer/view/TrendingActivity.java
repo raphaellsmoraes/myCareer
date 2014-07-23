@@ -9,6 +9,8 @@ import android.widget.RelativeLayout;
 import com.fima.cardsui.views.CardUI;
 import com.rm.mycareer.R;
 import com.rm.mycareer.utils.AsyncTaskCompleteListener;
+import com.rm.mycareer.utils.myCareerJSONObject;
+import com.rm.mycareer.utils.myCareerJSONRequest;
 import com.rm.mycareer.utils.myCareerUtils;
 
 /**
@@ -31,6 +33,28 @@ public class TrendingActivity extends BaseActivity{
         mCardView.addCard(new TrendingCard("Computer Science"));
         mCardView.addCard(new CardPlay("Computer Science", "Teste legal", "RED", "BLACK", false, true));
 
+
+        /* Request a Profession */
+        myCareerJSONObject mObject = new myCareerJSONObject(myCareerJSONRequest.RequestType.ONET,
+                myCareerJSONRequest.GET_CAREER_ONET_BASE_URL + "17-2051.00", null, 0);
+
+        mRequest = new myCareerJSONRequest(mObject, new AsyncTaskCompleteListener() {
+            @Override
+            public void onTaskComplete(String result, int statusCode, int requestCode) {
+                if (statusCode == 200) {
+                    Log.d("TESTE", "OK: " + result);
+                }else{
+                    Log.d("TESTE", "NOT OK: " + statusCode);
+                }
+            }
+
+            @Override
+            public void onCommandFinished(boolean result) {
+
+            }
+        });
+
+        mRequest.start();
         // draw cards
         mCardView.refresh();
     }

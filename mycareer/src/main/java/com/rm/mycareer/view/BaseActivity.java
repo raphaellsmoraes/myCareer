@@ -2,9 +2,16 @@ package com.rm.mycareer.view;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +31,9 @@ import com.facebook.Session;
 import com.facebook.model.GraphObject;
 import com.facebook.widget.ProfilePictureView;
 import com.rm.mycareer.R;
+import com.rm.mycareer.myCareer;
+import com.rm.mycareer.utils.AsyncTaskCompleteListener;
+import com.rm.mycareer.utils.myCareerJSONObject;
 import com.rm.mycareer.utils.myCareerJSONRequest;
 
 import java.io.InputStream;
@@ -79,25 +89,6 @@ public class BaseActivity extends FragmentActivity {
                             profile.setProfileId(mUserInfo.getProperty("id").toString());
                             profile_user.setText(mUserInfo.getProperty("name").toString());
 
-                           /* myCareerJSONObject mObject = new myCareerJSONObject(myCareerJSONRequest.RequestType.GET,
-                                    String.format(myCareerJSONRequest.GET_FB_PICTURE, profile.getProfileId()), null, 0);
-
-                            mRequest = new myCareerJSONRequest(mObject, new AsyncTaskCompleteListener() {
-                                @Override
-                                public void onTaskComplete(String result, int statusCode, int requestCode) {
-                                    if (statusCode == 200) {
-
-                                    }
-                                }
-
-                                @Override
-                                public void onCommandFinished(boolean result) {
-
-                                }
-                            });
-
-                            mRequest.start();
-                            */
                             new DownloadImageTask((ImageView) findViewById(R.id.top_profile_iv))
                                     .execute(String.format(myCareerJSONRequest.GET_FB_PICTURE, profile.getProfileId()));
 
@@ -148,6 +139,16 @@ public class BaseActivity extends FragmentActivity {
         }
 
         protected void onPostExecute(Bitmap result) {
+
+            final RenderScript rs = RenderScript.create(myCareer.getContext() );
+            final Allocation input = Allocation.createFromBitmap( rs, result, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT );
+            final Allocation output = Allocation.createTyped( rs, input.getType() );
+            final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create( rs, Element.U8_4(rs) );
+            script.setRadius( 10.f /* e.g. 3.f */ );
+            script.setInput( input );
+            script.forEach( output );
+            output.copyTo( result );
+
             bmImage.setImageBitmap(result);
         }
     }

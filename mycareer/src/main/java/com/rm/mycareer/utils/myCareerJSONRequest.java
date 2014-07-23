@@ -5,6 +5,7 @@ package com.rm.mycareer.utils;
  */
 
 import android.content.Context;
+import android.util.Base64;
 import android.util.Log;
 
 import com.rm.mycareer.myCareer;
@@ -34,11 +35,14 @@ public class myCareerJSONRequest extends AsyncCommand {
     private int mStatusCode;
 
     public static final String GET_FB_PICTURE = "https://graph.facebook.com/%s/picture?type=large";
-
+    public static final String GET_CAREER_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";
+    private static final String ONET_USERNAME = "puc_campinas_edu_br";
+    private static final String ONET_PASSWORD = "sqh7482";
 
     //Request Type
     public enum RequestType {
         GET,
+        ONET,
         POST,
         DELETE,
         PUT;
@@ -135,6 +139,26 @@ public class myCareerJSONRequest extends AsyncCommand {
                     break;
                 case PUT:
                     break;
+                case ONET:
+                    Log.i(TAG, "myCareer ONET GET ");
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.setUseCaches(false);
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestProperty("Content-Type", "application/vnd.org.onetcenter.mnm.career+xml");
+
+                    String authorization = ONET_USERNAME + ":" + ONET_PASSWORD;
+                    String encodedAuthorization = new String(Base64.encode(authorization.getBytes(), 0));
+                    urlConnection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
+
+                    if (responseStr.length() > 0) {
+                        Log.d(TAG, "Response from cache: " + responseStr);
+                        mStatusCode = 200;
+                        returnListener = responseStr;
+                        return true;
+                    }
+                    break;
+
                 case GET:
                 default:
                     Log.i(TAG, "myCareer GET ");
