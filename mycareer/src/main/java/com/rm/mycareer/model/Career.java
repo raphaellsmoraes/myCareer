@@ -95,7 +95,16 @@ public class Career {
         this.jobOutlookUrl = jobOutlookUrl;
     }
 
+    public String getCareer() {
+        return career;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
+    }
+
     public String code;
+    public String career;
     public ArrayList<String> title;
     public String what_they_do;
     public ArrayList<String> on_the_job;

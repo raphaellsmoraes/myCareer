@@ -62,6 +62,8 @@
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-v4-19.0.1" level="project" />
+    <orderEntry type="library" exported="" name="java-json" level="project" />
+    <orderEntry type="library" exported="" name="1_java-json" level="project" />
     <orderEntry type="module" module-name="CardsUILib" exported="" />
     <orderEntry type="module" module-name="facebook" exported="" />
     <orderEntry type="module" module-name="HoloGraphLibrary" exported="" />

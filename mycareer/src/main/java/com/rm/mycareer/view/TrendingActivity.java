@@ -37,7 +37,6 @@ public class TrendingActivity extends BaseActivity {
         obj = new ONETXmlReader(myCareerJSONRequest.GET_CAREER_ONET_BASE_URL + "17-2051.00");
         obj.fetchXML();
         while (obj.parsingComplete) ;
-        Log.d("TESTE", "TESTE->" + obj.getCode() + "-" + obj.getTitle());
         /* End request */
 
 

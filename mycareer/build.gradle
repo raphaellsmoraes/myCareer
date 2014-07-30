@@ -24,4 +24,6 @@ dependencies {
     compile project(':libs/facebook')
     compile project(':libs/HoloGraphLibrary')
     compile project(':CardsUILib')
+    compile files('libs/java-json.jar')
+    compile files('C:/Users/vntramo/Documents/GitHub/myCareer/libs/java-json.jar')
 }

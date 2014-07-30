@@ -1,13 +1,18 @@
 package com.rm.mycareer.utils;
 
-import android.util.Base64;
+import android.util.*;
 
 import com.rm.mycareer.model.Career;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,60 +26,8 @@ public class ONETXmlReader {
     private XmlPullParserFactory xmlFactoryObject;
     public volatile boolean parsingComplete = true;
 
-    public Career mCurrentCareer;
-    public ArrayList<Career> mCareerList;
-
     public ONETXmlReader(String url) {
         this.urlString = url;
-    }
-
-    public void parseXMLAndStoreIt(XmlPullParser myParser) {
-        int event;
-        String text = null;
-        try {
-            event = myParser.getEventType();
-            while (event != XmlPullParser.END_DOCUMENT) {
-                String name = myParser.getName();
-                switch (event) {
-
-                    case XmlPullParser.START_TAG:
-                        android.util.Log.d("TESTE", "Name: " + name);
-                        break;
-
-                    case XmlPullParser.TEXT:
-                        text = myParser.getText();
-                        android.util.Log.d("TESTE", "Text: " + text);
-                        break;
-
-                    case XmlPullParser.END_TAG:
-                        if (name.equals("code")) {
-                            code = text;
-                        } else if (name.equals("title")) {
-                            title = myParser.getAttributeValue(null, "value");
-                        } else if (name.equals("what_they_do")) {
-                            what_they_do = myParser.getAttributeValue(null, "value");
-                        } else if (name.equals("on_the_job")) {
-                            on_the_job = myParser.getAttributeValue(null, "value");
-                        } else if (name.equals("task")) {
-                            task = myParser.getAttributeValue(null, "value");
-                        } else if (name.equals("career")) {
-                            career = myParser.getAttributeValue(null, "value");
-                        } else {
-                        }
-                        break;
-                }
-                event = myParser.next();
-
-            }
-            parsingComplete = false;
-        } catch (
-                Exception e
-                )
-
-        {
-            e.printStackTrace();
-        }
-
     }
 
     public void fetchXML() {
@@ -100,14 +53,34 @@ public class ONETXmlReader {
                     conn.connect();
                     InputStream stream = conn.getInputStream();
 
-                    xmlFactoryObject = XmlPullParserFactory.newInstance();
+                    /*xmlFactoryObject = XmlPullParserFactory.newInstance();
                     XmlPullParser myparser = xmlFactoryObject.newPullParser();
 
                     myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES
                             , false);
                     myparser.setInput(stream, null);
-                    parseXMLAndStoreIt(myparser);
+                    parseXMLAndStoreIt(myparser);*/
+
+                    BufferedReader r = new BufferedReader(new InputStreamReader(stream));
+                    StringBuilder total = new StringBuilder();
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        total.append(line);
+                    }
+
+                    JSONObject jsonObj = null;
+                    try {
+                        jsonObj = XML.toJSONObject(total.toString());
+                    } catch (JSONException e) {
+                        android.util.Log.e("JSON exception", e.getMessage());
+                        e.printStackTrace();
+                    }
+
+                    android.util.Log.d("XML", total.toString());
+                    android.util.Log.d("JSON", jsonObj.toString());
+
                     stream.close();
+                    parsingComplete = false;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
