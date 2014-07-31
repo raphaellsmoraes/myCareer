@@ -1,21 +1,16 @@
 package com.rm.mycareer.utils;
 
-import android.util.*;
-
-import com.rm.mycareer.model.Career;
+import android.util.Base64;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * Created by vntramo on 7/23/2014.
@@ -23,7 +18,12 @@ import java.util.ArrayList;
 public class ONETXmlReader {
 
     private String urlString = null;
-    private XmlPullParserFactory xmlFactoryObject;
+
+    public JSONObject getJsonObj() {
+        return jsonObj;
+    }
+
+    public JSONObject jsonObj = null;
     public volatile boolean parsingComplete = true;
 
     public ONETXmlReader(String url) {
@@ -68,7 +68,6 @@ public class ONETXmlReader {
                         total.append(line);
                     }
 
-                    JSONObject jsonObj = null;
                     try {
                         jsonObj = XML.toJSONObject(total.toString());
                     } catch (JSONException e) {
@@ -91,4 +90,6 @@ public class ONETXmlReader {
 
 
     }
+
+
 }

@@ -36,6 +36,7 @@ public class myCareerJSONRequest extends AsyncCommand {
 
     public static final String GET_FB_PICTURE = "https://graph.facebook.com/%s/picture?type=large";
     public static final String GET_CAREER_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";
+    public static final String GET_KEYWORD_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/search?keyword=";
     public static final String ONET_USERNAME = "puc_campinas_edu_br";
     public static final String ONET_PASSWORD = "sqh7482";
 
