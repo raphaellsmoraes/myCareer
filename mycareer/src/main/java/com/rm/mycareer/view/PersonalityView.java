@@ -81,7 +81,7 @@ public class PersonalityView extends BaseActivity {
             }
         });
 
-        onClickTrending();
+        onClickSearch();
     }
 
 
@@ -135,7 +135,19 @@ public class PersonalityView extends BaseActivity {
         mTrending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TrendingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onClickSearch() {
+    /* Setting up menu */
+        RelativeLayout mTrending = (RelativeLayout) findViewById(R.id.rl_history);
+        mTrending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(intent);
             }
         });

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 19
     buildToolsVersion '19.1.0'
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 19
         versionCode 1
         versionName '1.0'
@@ -26,4 +26,5 @@ dependencies {
     compile project(':CardsUILib')
     compile files('C:/Users/vntramo/Documents/GitHub/myCareer/libs/gson-2.2.4.jar')
     compile files('C:/Users/vntramo/Documents/GitHub/myCareer/libs/java-json.jar')
+    compile 'com.android.support:appcompat-v7:19.+'
 }

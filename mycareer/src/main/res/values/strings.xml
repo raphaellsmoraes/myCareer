@@ -30,12 +30,12 @@
     <!-- Drawing Menu -->
     <string name="menu_trending">Trending</string>
     <string name="menu_recommendations">Recommendations</string>
-    <string name="menu_history">History</string>
+    <string name="menu_history">Search</string>
     <string name="menu_personality">Personality</string>
     <string name="menu_friends">Friends</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_personality_review">Review</string>
-    <string name="menu_personality_retake">Retake test</string>
+    <string name="menu_personality_retake">Test</string>
     <string name="menu_friends_popular">Popular</string>
     <string name="menu_friends_spotlight">Spotlight</string>
     <string name="menu_settings_about">About</string>

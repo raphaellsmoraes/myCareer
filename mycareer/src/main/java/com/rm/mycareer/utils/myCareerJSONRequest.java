@@ -11,6 +11,8 @@ import android.util.Log;
 import com.rm.mycareer.myCareer;
 import com.rm.mycareer.utils.command.AsyncCommand;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -83,7 +85,11 @@ public class myCareerJSONRequest extends AsyncCommand {
     protected void onPostExecute(boolean result) {
 
         if (mCallback != null) {
-            mCallback.onTaskComplete(returnListener, mStatusCode, mRequestObject.getRequestCode());
+            try {
+                mCallback.onTaskComplete(returnListener, mStatusCode, mRequestObject.getRequestCode());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         } else {
             Log.d(TAG, "mCallback is NULL!");
         }
