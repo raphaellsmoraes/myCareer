@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import com.facebook.Session;
 import com.facebook.android.Facebook;
-import com.rm.mycareer.view.PersonalityView;
+import com.rm.mycareer.view.SearchActivity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -39,23 +39,30 @@ public class LandingPage extends FragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
 
-        if (Session.getActiveSession().isOpened()) {
-            Intent intent = new Intent(this, PersonalityView.class);
-            startActivity(intent);
-        } else {
-            Log.d("Session", "tá fechada =/");
+        try {
+            if (Session.getActiveSession().isOpened()) {
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+            } else {
+                Log.d("Session", "tá fechada =/");
+            }
+        } catch (Exception e) {
+
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        try {
+            if (Session.getActiveSession().isOpened()) {
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+            } else {
+                Log.d("Session", "tá fechada =/");
+            }
+        } catch (Exception e) {
 
-        if (Session.getActiveSession().isOpened()) {
-            Intent intent = new Intent(this, PersonalityView.class);
-            startActivity(intent);
-        } else {
-            Log.d("Session", "tá fechada =/");
         }
     }
 

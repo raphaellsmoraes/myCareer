@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -125,6 +126,11 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
                                     mCareerDetail = jsonObj.getJSONObject("career");
                                     final String title = mCareerDetail.getString("title");
                                     final String description = mCareerDetail.getString("what_they_do");
+                                    final ArrayList<String> tasks = new ArrayList<String>();
+
+                                    for (int i = 0; i < mCareerDetail.getJSONObject("on_the_job").getJSONArray("task").length(); i++) {
+                                        tasks.add(mCareerDetail.getJSONObject("on_the_job").getJSONArray("task").get(i).toString());
+                                    }
 
                                     final CardPlay newCard = new CardPlay(title, description, "RED", "BLACK", false, true);
                                     newCard.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +140,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
                                             Bundle bundle = new Bundle();
                                             bundle.putString(myCareerUtils.TITLE, title);
                                             bundle.putString(myCareerUtils.WHATTHEYDO, newCard.getDescription());
+                                            bundle.putStringArrayList(myCareerUtils.ONTHEJOB, tasks);
                                             intent.putExtras(bundle);
                                             startActivity(intent);
                                         }

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
 
 import com.rm.mycareer.R;
 import com.rm.mycareer.adapter.HollandAdapter;
@@ -80,8 +79,6 @@ public class PersonalityView extends BaseActivity {
                 }
             }
         });
-
-        onClickSearch();
     }
 
 
@@ -126,30 +123,5 @@ public class PersonalityView extends BaseActivity {
             mode.setTitle(String.format("%d item selected", getBooleanCount()));
             return false;
         }
-    }
-
-
-    public void onClickTrending() {
-    /* Setting up menu */
-        RelativeLayout mTrending = (RelativeLayout) findViewById(R.id.rl_trending);
-        mTrending.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void onClickSearch() {
-    /* Setting up menu */
-        RelativeLayout mTrending = (RelativeLayout) findViewById(R.id.rl_history);
-        mTrending.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

@@ -22,6 +22,7 @@ public class myCareerUtils {
     public static final String PERSONALITY = "riasec_boolean";
     public static final String TITLE = "TITLE";
     public static final String WHATTHEYDO = "WHATTHEYDO";
+    public static final String ONTHEJOB = "ONTHEJOB";
     public static final String SKILLS = "SKILLS";
     public static final String APP_ID = getStringResourceByName("app_id");
     public static final String ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";

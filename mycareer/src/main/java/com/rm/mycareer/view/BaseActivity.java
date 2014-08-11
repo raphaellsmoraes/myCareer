@@ -1,11 +1,8 @@
 package com.rm.mycareer.view;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.renderscript.Allocation;
@@ -16,8 +13,8 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,8 +29,6 @@ import com.facebook.model.GraphObject;
 import com.facebook.widget.ProfilePictureView;
 import com.rm.mycareer.R;
 import com.rm.mycareer.myCareer;
-import com.rm.mycareer.utils.AsyncTaskCompleteListener;
-import com.rm.mycareer.utils.myCareerJSONObject;
 import com.rm.mycareer.utils.myCareerJSONRequest;
 
 import java.io.InputStream;
@@ -116,6 +111,8 @@ public class BaseActivity extends FragmentActivity {
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
+
+        onClickConfigure();
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
@@ -140,16 +137,69 @@ public class BaseActivity extends FragmentActivity {
 
         protected void onPostExecute(Bitmap result) {
 
-            final RenderScript rs = RenderScript.create(myCareer.getContext() );
-            final Allocation input = Allocation.createFromBitmap( rs, result, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT );
-            final Allocation output = Allocation.createTyped( rs, input.getType() );
-            final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create( rs, Element.U8_4(rs) );
-            script.setRadius( 10.f /* e.g. 3.f */ );
-            script.setInput( input );
-            script.forEach( output );
-            output.copyTo( result );
+            final RenderScript rs = RenderScript.create(myCareer.getContext());
+            final Allocation input = Allocation.createFromBitmap(rs, result, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
+            final Allocation output = Allocation.createTyped(rs, input.getType());
+            final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+            script.setRadius(10.f /* e.g. 3.f */);
+            script.setInput(input);
+            script.forEach(output);
+            output.copyTo(result);
 
             bmImage.setImageBitmap(result);
+        }
+    }
+
+    public void onClickConfigure() {
+        onClickTrending();
+        onClickSearch();
+        onClickPersonalityTest();
+    }
+
+    public void onClickTrending() {
+    /* Setting up menu */
+        RelativeLayout mTrending = (RelativeLayout) findViewById(R.id.rl_trending);
+        mTrending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onClickPersonalityTest() {
+    /* Setting up menu */
+        RelativeLayout mTrending = (RelativeLayout) findViewById(R.id.rl_personality_retake);
+        mTrending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PersonalityView.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onClickSearch() {
+    /* Setting up menu */
+        RelativeLayout mTrending = (RelativeLayout) findViewById(R.id.rl_history);
+        mTrending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
