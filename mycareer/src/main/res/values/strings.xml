@@ -113,4 +113,6 @@
     <string name="desc">Description</string>
     <string name="title">Title</string>
     <string name="color_stripe">Color Stripe</string>
+
+    <string name="search_desc">Search for professions keywords. \nExample: "Computers, Art, Animals.."</string>
 </resources>

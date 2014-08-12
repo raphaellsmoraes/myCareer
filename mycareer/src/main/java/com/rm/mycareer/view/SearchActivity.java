@@ -9,11 +9,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.fima.cardsui.views.CardUI;
 import com.rm.mycareer.R;
 import com.rm.mycareer.utils.AsyncTaskCompleteListener;
-import com.rm.mycareer.utils.ONETXmlReader;
 import com.rm.mycareer.utils.myCareerJSONObject;
 import com.rm.mycareer.utils.myCareerJSONRequest;
 import com.rm.mycareer.utils.myCareerUtils;
@@ -32,12 +32,12 @@ import java.util.List;
 public class SearchActivity extends BaseActivity implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
     private CardUI mCardView;
-    private ONETXmlReader obj;
     private JSONArray mCareers;
     private JSONObject mCareerDetail;
     private ProgressBar mProgressBar;
     private SearchView mSearchView;
     private String mStatusView;
+    private TextView mTextView;
     private int i;
 
     @Override
@@ -50,6 +50,8 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
         mCardView = (CardUI) findViewById(R.id.cardsview);
         mCardView.setSwipeable(false);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_trending);
+        mTextView = (TextView) findViewById(R.id.tv_search_description);
+        mProgressBar.setVisibility(View.GONE);
 
     }
 
@@ -77,6 +79,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
 
         myCareerUtils.hideKeyboard(this);
 
+        mTextView.setVisibility(View.GONE);
         mCardView.clearCards();
         mCardView.refresh();
         mProgressBar.setVisibility(View.VISIBLE);

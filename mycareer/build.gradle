@@ -24,7 +24,7 @@ dependencies {
     compile project(':libs/facebook')
     compile project(':libs/HoloGraphLibrary')
     compile project(':CardsUILib')
-    compile files('C:/Users/vntramo/Documents/GitHub/myCareer/libs/gson-2.2.4.jar')
-    compile files('C:/Users/vntramo/Documents/GitHub/myCareer/libs/java-json.jar')
+    compile files('C:/Users/rapha_000/Documents/GitHub/myCareer/libs/gson-2.2.4.jar')
+    compile files('C:/Users/rapha_000/Documents/GitHub/myCareer/libs/java-json.jar')
     compile 'com.android.support:appcompat-v7:19.+'
 }
