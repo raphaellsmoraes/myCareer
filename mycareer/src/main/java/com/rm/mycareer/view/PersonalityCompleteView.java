@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -54,7 +55,7 @@ public class PersonalityCompleteView extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.personalitycomplete_layout);
         super.onCreate(savedInstanceState);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
         hollandSelection = bundle.getBooleanArray(myCareerUtils.PERSONALITY);
@@ -223,4 +224,14 @@ public class PersonalityCompleteView extends Activity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

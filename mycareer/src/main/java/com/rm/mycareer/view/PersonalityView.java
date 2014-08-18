@@ -28,6 +28,8 @@ public class PersonalityView extends BaseActivity {
         setContentView(R.layout.personality_page_viewer);
         super.onCreate(savedInstanceState);
 
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         this.hollandSelection = new boolean[myCareerUtils.getDrawableList().size()];
 
         GridView gridview = (GridView) findViewById(R.id.grid_view);
