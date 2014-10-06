@@ -18,68 +18,79 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-
-                    <TextView
-                        android:id="@+id/tv_title"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/holo_gray"
+                            android:gravity="center"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_below="@+id/tv_title"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/holo_gray"
+                            android:gravity="center" />
+
+                        <TextView
+                            android:id="@+id/tv_onthejob_task1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_description"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/holo_gray" />
+
+                        <TextView
+                            android:id="@+id/tv_onthejob_task2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_onthejob_task1"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/holo_gray" />
+
+                        <TextView
+                            android:id="@+id/tv_onthejob_task3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_onthejob_task2"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/holo_gray" />
+
+                    </RelativeLayout>
+
+                    <RatingBar
+                        android:id="@+id/rating_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16dp"
-                        android:background="@color/holo_gray"
-                        android:gravity="center"
-                        android:textSize="18dp" />
-
-
-                    <TextView
-                        android:id="@+id/tv_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_below="@+id/tv_title"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/holo_gray"
-                        android:gravity="center" />
-
-                    <TextView
-                        android:id="@+id/tv_onthejob_task1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_description"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/holo_gray"
-                        android:drawableLeft="@drawable/rsz_ski_trail_rating_symbol_black_circle" />
-
-                    <TextView
-                        android:id="@+id/tv_onthejob_task2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_onthejob_task1"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/holo_gray"
-                        android:drawableLeft="@drawable/rsz_ski_trail_rating_symbol_black_circle" />
-
-                    <TextView
-                        android:id="@+id/tv_onthejob_task3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_onthejob_task2"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@color/holo_gray"
-                        android:drawableLeft="@drawable/rsz_ski_trail_rating_symbol_black_circle" />
-
-                </RelativeLayout>
+                        android:numStars="5"
+                        android:stepSize="1.0" />
+                </LinearLayout>
 
                 <ProgressBar
                     android:id="@+id/pb_trending"
@@ -87,10 +98,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:visibility="visible" />
-
             </FrameLayout>
 
         </RelativeLayout>
+
     </ScrollView>
 
     <include layout="@layout/ll_drawer_layout" />
