@@ -23,6 +23,7 @@ import com.rm.mycareer.view.PersonalityView;
 import com.rm.mycareer.view.SearchActivity;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.MessageDigest;
@@ -181,6 +182,10 @@ public class LandingPage extends FragmentActivity {
                                         /* Check if there's pagination */
                                         if (booksPagingObject.has("next")) {
                                             Log.d("teste", booksPagingObject.getString("next"));
+
+                                            /* Request Next */
+                                            getRequestedPaginationBooks(booksPagingObject.getString("next"));
+
                                         } else {
                                             Log.d("teste", booksArray.toString());
                                         }
@@ -202,7 +207,36 @@ public class LandingPage extends FragmentActivity {
         }
     }
 
+    private void getRequestedPaginationBooks(String nextUrl) {
 
+        new Request(
+                Session.getActiveSession(),
+                nextUrl,
+                null,
+                HttpMethod.GET,
+                new Request.Callback() {
+                    @Override
+                    public void onCompleted(Response response) {
+
+                         /* Books */
+                        JSONArray object = null;
+
+                        try {
+
+                            object = new JSONArray(response.getRawResponse());
+                            Log.d("OBJECT", object.toString());
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                         /* End books */
+
+                    }
+                }
+        ).executeAsync();
+    }
 
 
     @Override
