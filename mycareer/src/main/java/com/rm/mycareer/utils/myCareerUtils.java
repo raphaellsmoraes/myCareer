@@ -2,6 +2,7 @@ package com.rm.mycareer.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
@@ -25,6 +26,10 @@ public class myCareerUtils {
     public static final String ONTHEJOB = "ONTHEJOB";
     public static final String SKILLS = "SKILLS";
     public static final String APP_ID = getStringResourceByName("app_id");
+    public static final String SH_MYCAREER = "MyCareerKey";
+    public static final String SH_MYCAREER_USER = "MyCareerUser";
+    public static final String SH_MYCAREER_USERID = "MyCareerUserID";
+    public static final String SH_MYCAREER_HOLLAND = "MyCareerUserHOLLAND";
     public static final String ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";
 
     public static final boolean API_10 = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
@@ -75,5 +80,34 @@ public class myCareerUtils {
             view = new View(activity);
         }
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static boolean isUser() {
+        SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
+        return prfs.getBoolean(SH_MYCAREER_USER, false);
+    }
+
+    public static String getUser() {
+        SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
+        return prfs.getString(SH_MYCAREER_USERID, "");
+    }
+
+    public static void setUser(String id) {
+        SharedPreferences preferences = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(SH_MYCAREER_USERID, id);
+        editor.apply();
+    }
+
+    public static void setHolland(boolean value) {
+        SharedPreferences preferences = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(SH_MYCAREER_HOLLAND, value);
+        editor.apply();
+    }
+
+    public static boolean getHolland() {
+        SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
+        return prfs.getBoolean(SH_MYCAREER_HOLLAND, false);
     }
 }

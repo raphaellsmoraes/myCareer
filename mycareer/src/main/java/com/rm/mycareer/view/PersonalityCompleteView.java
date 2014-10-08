@@ -154,6 +154,8 @@ public class PersonalityCompleteView extends Activity {
             }
         });
         buildGraph();
+
+        myCareerUtils.setHolland(true);
     }
 
     static Map sortByValue(Map map) {

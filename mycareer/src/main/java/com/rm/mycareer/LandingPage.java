@@ -11,12 +11,23 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 
+import com.facebook.HttpMethod;
+import com.facebook.Request;
+import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.android.Facebook;
+import com.facebook.model.GraphObject;
+import com.rm.mycareer.model.FavoriteBooks;
+import com.rm.mycareer.utils.myCareerUtils;
+import com.rm.mycareer.view.PersonalityView;
 import com.rm.mycareer.view.SearchActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,8 +52,49 @@ public class LandingPage extends FragmentActivity {
 
         try {
             if (Session.getActiveSession().isOpened()) {
-                Intent intent = new Intent(this, SearchActivity.class);
-                startActivity(intent);
+
+                /* Check if user exists */
+                if (myCareerUtils.isUser()) {
+                    /* Check if user completed holland test */
+                    if (myCareerUtils.getHolland()) {
+                        /* Goes to Search page */
+                        Intent intent = new Intent(this, SearchActivity.class);
+                        startActivity(intent);
+                    } else {
+                        /* Start holland test */
+                        Intent intent = new Intent(this, PersonalityView.class);
+                        startActivity(intent);
+                    }
+                } else {
+                    /* Request user by fb id if user exists goes to search
+                    * else add new user */
+
+
+                    Bundle params = new Bundle();
+                    params.putString("fields", "id,name,birthday,location,books{id,name},movies{id,name},music{id,name},favorite_athletes");
+                    params.putString("limit", "500");
+
+               /* User request */
+                    new Request(
+                            Session.getActiveSession(),
+                            "/me",
+                            params,
+                            HttpMethod.GET,
+                            new Request.Callback() {
+                                public void onCompleted(Response response) {
+                                /* handle the result */
+                                    GraphObject mUserInfo = response.getGraphObject();
+                                    try {
+
+                                        Log.d("teste", mUserInfo.getInnerJSONObject().getJSONArray("data").toString());
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                    ).executeAsync();
+                }
             } else {
                 Log.d("Session", "tá fechada =/");
             }
@@ -56,8 +108,92 @@ public class LandingPage extends FragmentActivity {
         super.onResume();
         try {
             if (Session.getActiveSession().isOpened()) {
-                Intent intent = new Intent(this, SearchActivity.class);
-                startActivity(intent);
+
+                /* Check if user exists */
+                if (myCareerUtils.isUser()) {
+                    /* Check if user completed holland test */
+                    if (myCareerUtils.getHolland()) {
+                        /* Goes to Search page */
+                        Intent intent = new Intent(this, SearchActivity.class);
+                        startActivity(intent);
+                    } else {
+                        /* Start holland test */
+                        Intent intent = new Intent(this, PersonalityView.class);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    /* Request user by fb id if user exists goes to search
+                    * else add new user */
+
+
+                    Bundle params = new Bundle();
+                    params.putString("fields", "id,name,birthday,location,books{id,name},movies{id,name},music{id,name},favorite_athletes,gender");
+                    params.putString("limit", "50000");
+
+               /* User request */
+                    new Request(
+                            Session.getActiveSession(),
+                            "/me",
+                            params,
+                            HttpMethod.GET,
+                            new Request.Callback() {
+                                public void onCompleted(Response response) {
+                                /* handle the result */
+                                    GraphObject mUserInfo = response.getGraphObject();
+                                    try {
+
+                                        /* First time log-in, retrieve from facebook all information */
+
+                                        JSONObject user = mUserInfo.getInnerJSONObject();
+
+                                        /* Id */
+                                        String id = user.getString("id");
+
+                                        /* Birthday */
+                                        String birthday = user.getString("birthday");
+
+                                        /* Location */
+                                        String location = user.getString("location");
+                                        JSONObject userLocation = new JSONObject(location);
+
+                                        /* Gender */
+                                        String gender = user.getString("gender");
+
+                                        /* Books */
+                                        String books = user.getString("books");
+                                        ArrayList<FavoriteBooks> booksArrayList = new ArrayList<FavoriteBooks>();
+                                        JSONObject booksObject = new JSONObject(books);
+                                        JSONArray booksArray = booksObject.getJSONArray("data");
+
+                                        for (int i = 0; i < booksArray.length(); i++) {
+                                            JSONObject object = booksArray.getJSONObject(i);
+                                            String booksId = object.getString("id");
+                                            String booksName = object.getString("name");
+                                            booksArrayList.add(new FavoriteBooks(booksId, booksName));
+                                        }
+
+                                        Log.d("teste", booksArrayList.get(0).getId());
+
+                                        String booksPagingString = booksObject.getString("paging");
+                                        JSONObject booksPagingObject = new JSONObject(booksPagingString);
+
+                                        /* Check if there's pagination */
+                                        if (booksPagingObject.has("next")) {
+                                            Log.d("teste", booksPagingObject.getString("next"));
+                                        } else {
+                                            Log.d("teste", booksArray.toString());
+                                        }
+                                        /* End books */
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                    ).executeAsync();
+                }
+
             } else {
                 Log.d("Session", "tá fechada =/");
             }
@@ -65,6 +201,8 @@ public class LandingPage extends FragmentActivity {
 
         }
     }
+
+
 
 
     @Override
