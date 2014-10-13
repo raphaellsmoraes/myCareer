@@ -17,7 +17,16 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.android.Facebook;
 import com.facebook.model.GraphObject;
+import com.google.gson.Gson;
+import com.rm.mycareer.model.FavoriteAthletes;
 import com.rm.mycareer.model.FavoriteBooks;
+import com.rm.mycareer.model.FavoriteMovies;
+import com.rm.mycareer.model.FavoriteMusics;
+import com.rm.mycareer.model.Location;
+import com.rm.mycareer.model.User;
+import com.rm.mycareer.utils.AsyncTaskCompleteListener;
+import com.rm.mycareer.utils.myCareerJSONObject;
+import com.rm.mycareer.utils.myCareerJSONRequest;
 import com.rm.mycareer.utils.myCareerUtils;
 import com.rm.mycareer.view.PersonalityView;
 import com.rm.mycareer.view.SearchActivity;
@@ -51,57 +60,230 @@ public class LandingPage extends FragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
 
-        try {
-            if (Session.getActiveSession().isOpened()) {
+        if (Session.getActiveSession().isOpened()) {
 
                 /* Check if user exists */
-                if (myCareerUtils.isUser()) {
+            if (myCareerUtils.isUser()) {
                     /* Check if user completed holland test */
-                    if (myCareerUtils.getHolland()) {
+                if (myCareerUtils.getHolland()) {
                         /* Goes to Search page */
-                        Intent intent = new Intent(this, SearchActivity.class);
-                        startActivity(intent);
-                    } else {
-                        /* Start holland test */
-                        Intent intent = new Intent(this, PersonalityView.class);
-                        startActivity(intent);
-                    }
+                    Intent intent = new Intent(this, SearchActivity.class);
+                    startActivity(intent);
                 } else {
+                        /* Start holland test */
+                    Intent intent = new Intent(this, PersonalityView.class);
+                    startActivity(intent);
+                }
+            } else {
                     /* Request user by fb id if user exists goes to search
                     * else add new user */
 
 
-                    Bundle params = new Bundle();
-                    params.putString("fields", "id,name,birthday,location,books{id,name},movies{id,name},music{id,name},favorite_athletes");
-                    params.putString("limit", "500");
+                Bundle params = new Bundle();
+                params.putString("fields", "id,name,birthday,location,books{id,name},movies{id,name},music{id,name},favorite_athletes,gender");
+                params.putString("limit", "50000");
 
                /* User request */
-                    new Request(
-                            Session.getActiveSession(),
-                            "/me",
-                            params,
-                            HttpMethod.GET,
-                            new Request.Callback() {
-                                public void onCompleted(Response response) {
+                new Request(
+                        Session.getActiveSession(),
+                        "/me",
+                        params,
+                        HttpMethod.GET,
+                        new Request.Callback() {
+                            public void onCompleted(Response response) {
                                 /* handle the result */
-                                    GraphObject mUserInfo = response.getGraphObject();
-                                    try {
+                                GraphObject mUserInfo = response.getGraphObject();
+                                try {
 
-                                        Log.d("teste", mUserInfo.getInnerJSONObject().getJSONArray("data").toString());
+                                        /* First time log-in, retrieve from facebook all information */
 
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                                    JSONObject user = mUserInfo.getInnerJSONObject();
+
+                                        /* Id */
+                                    String id = user.getString("id");
+
+                                    /* Name */
+                                    String name = user.getString("name");
+
+                                        /* Birthday */
+                                    String birthday = user.getString("birthday");
+
+                                        /* Location */
+                                    String location = user.getString("location");
+                                    JSONObject userLocation = new JSONObject(location);
+                                    String locationId = userLocation.getString("id");
+                                    String locationName = userLocation.getString("name");
+
+                                        /* Gender */
+                                    String gender = user.getString("gender");
+
+                                        /* Books */
+                                    String books = user.getString("books");
+                                    ArrayList<FavoriteBooks> booksArrayList = new ArrayList<FavoriteBooks>();
+                                    JSONObject booksObject = new JSONObject(books);
+                                    JSONArray booksArray = booksObject.getJSONArray("data");
+
+                                    for (int i = 0; i < booksArray.length(); i++) {
+                                        JSONObject object = booksArray.getJSONObject(i);
+                                        String booksId = object.getString("id");
+                                        String booksName = object.getString("name");
+                                        booksArrayList.add(new FavoriteBooks(booksId, booksName));
                                     }
+
+                                    String booksPagingString = booksObject.getString("paging");
+                                    JSONObject booksPagingObject = new JSONObject(booksPagingString);
+
+                                    /* Check if there's pagination
+                                    if (booksPagingObject.has("next")) {
+                                        Log.d("teste", booksPagingObject.getString("next"));
+
+                                    ArrayList<FavoriteBooks> arrayAux = getRequestedPaginationBooks(booksPagingObject.getString("next"), booksArrayList);
+                                    booksArrayList.addAll(arrayAux);
+
+                                    Log.d("teste", "Tamanho:" + arrayAux.size());
+
+                                    }else{
+
+                                    }*/
+
+                                    Log.d("teste", booksArray.toString());
+                                    /* End books */
+
+                                    /* Music */
+                                    String music = user.getString("music");
+                                    ArrayList<FavoriteMusics> musicArrayList = new ArrayList<FavoriteMusics>();
+                                    JSONObject musicObject = new JSONObject(music);
+                                    JSONArray musicArray = musicObject.getJSONArray("data");
+
+                                    for (int i = 0; i < musicArray.length(); i++) {
+                                        JSONObject object = musicArray.getJSONObject(i);
+                                        String musicId = object.getString("id");
+                                        String musicName = object.getString("name");
+                                        musicArrayList.add(new FavoriteMusics(musicId, musicName));
+                                    }
+
+                                    String musicPagingString = musicObject.getString("paging");
+                                    JSONObject musicPagingObject = new JSONObject(musicPagingString);
+
+                                    /* Check if there's pagination
+                                    if (booksPagingObject.has("next")) {
+                                        Log.d("teste", booksPagingObject.getString("next"));
+
+                                    ArrayList<FavoriteBooks> arrayAux = getRequestedPaginationBooks(booksPagingObject.getString("next"), booksArrayList);
+                                    booksArrayList.addAll(arrayAux);
+
+                                    Log.d("teste", "Tamanho:" + arrayAux.size());
+
+                                    }else{
+
+                                    }*/
+
+                                    Log.d("teste", musicArray.toString());
+                                    /* End music */
+
+                                    /* movies */
+                                    String movies = user.getString("movies");
+                                    ArrayList<FavoriteMovies> moviesArrayList = new ArrayList<FavoriteMovies>();
+                                    JSONObject moviesObject = new JSONObject(movies);
+                                    JSONArray moviesArray = moviesObject.getJSONArray("data");
+
+                                    for (int i = 0; i < moviesArray.length(); i++) {
+                                        JSONObject object = moviesArray.getJSONObject(i);
+                                        String moviesId = object.getString("id");
+                                        String moviesName = object.getString("name");
+                                        moviesArrayList.add(new FavoriteMovies(moviesId, moviesName));
+                                    }
+
+                                    String moviesPagingString = moviesObject.getString("paging");
+                                    JSONObject moviesPagingObject = new JSONObject(moviesPagingString);
+
+                                    /* Check if there's pagination
+                                    if (booksPagingObject.has("next")) {
+                                        Log.d("teste", booksPagingObject.getString("next"));
+
+                                    ArrayList<FavoriteBooks> arrayAux = getRequestedPaginationBooks(booksPagingObject.getString("next"), booksArrayList);
+                                    booksArrayList.addAll(arrayAux);
+
+                                    Log.d("teste", "Tamanho:" + arrayAux.size());
+
+                                    }else{
+
+                                    }*/
+
+                                    Log.d("teste", moviesArray.toString());
+                                    /* End movies */
+
+                                    /* Atlhetes */
+
+                                    ArrayList<FavoriteAthletes> atlhetesArrayList = new ArrayList<FavoriteAthletes>();
+                                    JSONArray atlhetesArray = user.getJSONArray("favorite_athletes");
+
+
+                                    for (int i = 0; i < atlhetesArray.length(); i++) {
+                                        JSONObject object = atlhetesArray.getJSONObject(i);
+                                        String atlhetesId = object.getString("id");
+                                        String atlhetesName = object.getString("name");
+                                        atlhetesArrayList.add(new FavoriteAthletes(atlhetesId, atlhetesName));
+                                    }
+
+                                    //String atlhetesPagingString = atlhetesObject.getString("paging");
+                                    //JSONObject atlhetesPagingObject = new JSONObject(booksPagingString);
+
+                                    /* Check if there's pagination
+                                    if (booksPagingObject.has("next")) {
+                                        Log.d("teste", booksPagingObject.getString("next"));
+
+                                    ArrayList<FavoriteBooks> arrayAux = getRequestedPaginationBooks(booksPagingObject.getString("next"), booksArrayList);
+                                    booksArrayList.addAll(arrayAux);
+
+                                    Log.d("teste", "Tamanho:" + arrayAux.size());
+
+                                    }else{
+                                    }*/
+
+                                    Log.d("teste", atlhetesArray.toString());
+                                    /* End atlhetes */
+
+
+                                    User newUser = new User(name, id, birthday, booksArrayList, moviesArrayList, musicArrayList, atlhetesArrayList, new Location(locationId, locationName), gender);
+                                    Log.d("teste", newUser.toString());
+
+                                    Gson gson = new Gson();
+                                    String json = gson.toJson(newUser);
+
+                                     /* add User*/
+                                    myCareerJSONObject requestObject =
+                                            new myCareerJSONObject(myCareerJSONRequest.RequestType.POST, myCareerJSONRequest.MYCAREER_BASE_URL + myCareerJSONRequest.MYCAREER_ADD_USER, json, 0);
+
+                                    myCareerJSONRequest addUser = new myCareerJSONRequest(requestObject, new AsyncTaskCompleteListener() {
+                                        @Override
+                                        public void onTaskComplete(String result, int statusCode, int requestCode) throws JSONException {
+                                            if (statusCode == 200) {
+                                                Log.d("teste", result);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCommandFinished(boolean result) {
+
+                                        }
+                                    });
+
+                                    addUser.start();
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
                             }
-                    ).executeAsync();
-                }
-            } else {
-                Log.d("Session", "tá fechada =/");
+                        }
+                ).executeAsync();
             }
-        } catch (Exception e) {
+        } else
 
+        {
+            Log.d("Session", "tá fechada =/");
         }
+
     }
 
     @Override
@@ -122,81 +304,6 @@ public class LandingPage extends FragmentActivity {
                         Intent intent = new Intent(this, PersonalityView.class);
                         startActivity(intent);
                     }
-
-                } else {
-                    /* Request user by fb id if user exists goes to search
-                    * else add new user */
-
-
-                    Bundle params = new Bundle();
-                    params.putString("fields", "id,name,birthday,location,books{id,name},movies{id,name},music{id,name},favorite_athletes,gender");
-                    params.putString("limit", "50000");
-
-               /* User request */
-                    new Request(
-                            Session.getActiveSession(),
-                            "/me",
-                            params,
-                            HttpMethod.GET,
-                            new Request.Callback() {
-                                public void onCompleted(Response response) {
-                                /* handle the result */
-                                    GraphObject mUserInfo = response.getGraphObject();
-                                    try {
-
-                                        /* First time log-in, retrieve from facebook all information */
-
-                                        JSONObject user = mUserInfo.getInnerJSONObject();
-
-                                        /* Id */
-                                        String id = user.getString("id");
-
-                                        /* Birthday */
-                                        String birthday = user.getString("birthday");
-
-                                        /* Location */
-                                        String location = user.getString("location");
-                                        JSONObject userLocation = new JSONObject(location);
-
-                                        /* Gender */
-                                        String gender = user.getString("gender");
-
-                                        /* Books */
-                                        String books = user.getString("books");
-                                        ArrayList<FavoriteBooks> booksArrayList = new ArrayList<FavoriteBooks>();
-                                        JSONObject booksObject = new JSONObject(books);
-                                        JSONArray booksArray = booksObject.getJSONArray("data");
-
-                                        for (int i = 0; i < booksArray.length(); i++) {
-                                            JSONObject object = booksArray.getJSONObject(i);
-                                            String booksId = object.getString("id");
-                                            String booksName = object.getString("name");
-                                            booksArrayList.add(new FavoriteBooks(booksId, booksName));
-                                        }
-
-                                        Log.d("teste", booksArrayList.get(0).getId());
-
-                                        String booksPagingString = booksObject.getString("paging");
-                                        JSONObject booksPagingObject = new JSONObject(booksPagingString);
-
-                                        /* Check if there's pagination */
-                                        if (booksPagingObject.has("next")) {
-                                            Log.d("teste", booksPagingObject.getString("next"));
-
-                                            /* Request Next */
-                                            getRequestedPaginationBooks(booksPagingObject.getString("next"));
-
-                                        } else {
-                                            Log.d("teste", booksArray.toString());
-                                        }
-                                        /* End books */
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                    ).executeAsync();
                 }
 
             } else {
@@ -207,35 +314,51 @@ public class LandingPage extends FragmentActivity {
         }
     }
 
-    private void getRequestedPaginationBooks(String nextUrl) {
+    private ArrayList<FavoriteBooks> getRequestedPaginationBooks(String nextUrl, final ArrayList<FavoriteBooks> books) {
 
-        new Request(
-                Session.getActiveSession(),
-                nextUrl,
-                null,
-                HttpMethod.GET,
-                new Request.Callback() {
-                    @Override
-                    public void onCompleted(Response response) {
+        final ArrayList<FavoriteBooks> booksAux = new ArrayList<FavoriteBooks>();
+        booksAux.addAll(books);
 
-                         /* Books */
-                        JSONArray object = null;
+         /* Request a Profession*/
+        myCareerJSONObject requestObject =
+                new myCareerJSONObject(myCareerJSONRequest.RequestType.GET, nextUrl, null, 0);
 
-                        try {
+        myCareerJSONRequest reqNext = new myCareerJSONRequest(requestObject, new AsyncTaskCompleteListener() {
+            @Override
+            public void onTaskComplete(String result, int statusCode, int requestCode) throws JSONException {
+                JSONObject booksPagingObject = new JSONObject(result);
+                JSONArray booksArray = booksPagingObject.getJSONArray("data");
 
-                            object = new JSONArray(response.getRawResponse());
-                            Log.d("OBJECT", object.toString());
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                         /* End books */
-
-                    }
+                for (int i = 0; i < booksArray.length(); i++) {
+                    JSONObject object = booksArray.getJSONObject(i);
+                    String booksId = object.getString("id");
+                    String booksName = object.getString("name");
+                    booksAux.add(new FavoriteBooks(booksId, booksName));
                 }
-        ).executeAsync();
+
+                if (booksPagingObject.has("next")) {
+                    Log.d("teste", booksPagingObject.getString("next"));
+                                            /* Request Next */
+                    ArrayList<FavoriteBooks> booksRet = getRequestedPaginationBooks(booksPagingObject.getString("next"), booksAux);
+                    booksAux.addAll(booksRet);
+                } else {
+                   /* return */
+                }
+            }
+
+            @Override
+            public void onCommandFinished(boolean result) {
+
+            }
+        });
+
+        reqNext.start();
+
+        while (reqNext.isRunning()) {
+        }
+        ;
+
+        return booksAux;
     }
 
 
