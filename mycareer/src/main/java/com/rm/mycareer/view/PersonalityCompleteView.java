@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,9 +17,18 @@ import android.widget.TextView;
 
 import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieSlice;
+import com.google.gson.Gson;
 import com.rm.mycareer.R;
 import com.rm.mycareer.adapter.PersonalityListAdapter;
+import com.rm.mycareer.model.Personality;
+import com.rm.mycareer.model.User;
+import com.rm.mycareer.myCareer;
+import com.rm.mycareer.utils.AsyncTaskCompleteListener;
+import com.rm.mycareer.utils.myCareerJSONObject;
+import com.rm.mycareer.utils.myCareerJSONRequest;
 import com.rm.mycareer.utils.myCareerUtils;
+
+import org.json.JSONException;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -155,7 +165,50 @@ public class PersonalityCompleteView extends Activity {
         });
         buildGraph();
 
-        myCareerUtils.setHolland(true);
+        myCareerUtils.setHolland(hollandMap);
+
+        /* Get user and update Personality */
+        User user = myCareerUtils.getUser();
+        Personality personality = new Personality(hollandArray[realistic], hollandArray[investigative],
+                hollandArray[artistic], hollandArray[social],
+                hollandArray[enterprising], hollandArray[conventional]);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(personality);
+
+          /* Update Personality */
+        myCareerJSONObject requestObject =
+                new myCareerJSONObject(myCareerJSONRequest.RequestType.POST, myCareerJSONRequest.MYCAREER_BASE_URL + myCareerJSONRequest.MYCAREER_UPDATE_PERSONALITY + user.getId(), json, 0);
+
+        myCareerJSONRequest updatePersonality = new myCareerJSONRequest(requestObject, new AsyncTaskCompleteListener() {
+            @Override
+            public void onTaskComplete(String result, int statusCode, int requestCode) throws JSONException {
+                if (statusCode == 200) {
+                    Gson gson1 = new Gson();
+                    User user1 = gson1.fromJson(result, User.class);
+                    myCareerUtils.setUser(user1);
+                    Log.d("teste", user1.getPersonality().toString());
+
+                    if (myCareerUtils.getHolland()) {
+                    /* Goes to Search page */
+                        Intent intent = new Intent(myCareer.getContext(), SearchActivity.class);
+                        startActivity(intent);
+                    } else {
+                    /* Start holland test */
+                        Intent intent = new Intent(myCareer.getContext(), PersonalityView.class);
+                        startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onCommandFinished(boolean result) {
+
+            }
+        });
+
+        updatePersonality.start();
+
     }
 
     static Map sortByValue(Map map) {

@@ -8,10 +8,13 @@ import android.os.Build;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.google.gson.Gson;
+import com.rm.mycareer.model.User;
 import com.rm.mycareer.myCareer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by rapha_000 on 29/05/2014.
@@ -24,10 +27,12 @@ public class myCareerUtils {
     public static final String TITLE = "TITLE";
     public static final String WHATTHEYDO = "WHATTHEYDO";
     public static final String ONTHEJOB = "ONTHEJOB";
+    public static final String CODE = "CODE";
     public static final String SKILLS = "SKILLS";
     public static final String APP_ID = getStringResourceByName("app_id");
     public static final String SH_MYCAREER = "MyCareerKey";
     public static final String SH_MYCAREER_USER = "MyCareerUser";
+    public static final String SH_MYCAREER_USEROBJ = "MyCareerUserObject";
     public static final String SH_MYCAREER_USERID = "MyCareerUserID";
     public static final String SH_MYCAREER_HOLLAND = "MyCareerUserHOLLAND";
     public static final String ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";
@@ -84,30 +89,70 @@ public class myCareerUtils {
 
     public static boolean isUser() {
         SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
-        return prfs.getBoolean(SH_MYCAREER_USER, false);
+        String json = prfs.getString(SH_MYCAREER_USEROBJ, null);
+
+        if (json != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public static String getUser() {
-        SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
-        return prfs.getString(SH_MYCAREER_USERID, "");
-    }
-
-    public static void setUser(String id) {
+    public static void setHolland(Map<String, Integer> value) {
         SharedPreferences preferences = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_WORLD_WRITEABLE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(SH_MYCAREER_USERID, id);
-        editor.apply();
-    }
 
-    public static void setHolland(boolean value) {
-        SharedPreferences preferences = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_WORLD_WRITEABLE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(SH_MYCAREER_HOLLAND, value);
+        Gson gson = new Gson();
+        String holland = gson.toJson(value);
+
+        editor.putString(SH_MYCAREER_HOLLAND, holland);
         editor.apply();
     }
 
     public static boolean getHolland() {
         SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
-        return prfs.getBoolean(SH_MYCAREER_HOLLAND, false);
+        String value = prfs.getString(SH_MYCAREER_HOLLAND, null);
+
+        if (value != null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static Map<String, Integer> getHollandValue() {
+        SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
+        String value = prfs.getString(SH_MYCAREER_HOLLAND, null);
+
+        if (value != null) {
+            Gson gson = new Gson();
+            Map<String, Integer> mapHolland = gson.fromJson(value, Map.class);
+            return mapHolland;
+        }
+
+        return null;
+    }
+
+
+    public static void setUser(User user) {
+        SharedPreferences preferences = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_WORLD_WRITEABLE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String value = gson.toJson(user);
+        editor.putString(SH_MYCAREER_USEROBJ, value.toString());
+        editor.apply();
+    }
+
+    public static User getUser() {
+        SharedPreferences prfs = myCareer.getContext().getSharedPreferences(SH_MYCAREER, Context.MODE_PRIVATE);
+        String json = prfs.getString(SH_MYCAREER_USEROBJ, null);
+
+        if (json != null) {
+            Gson gson = new Gson();
+            User user = gson.fromJson(json, User.class);
+            return user;
+        }
+
+        return null;
     }
 }

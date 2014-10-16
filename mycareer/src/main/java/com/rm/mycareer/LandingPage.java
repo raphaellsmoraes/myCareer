@@ -259,7 +259,22 @@ public class LandingPage extends FragmentActivity {
                                         @Override
                                         public void onTaskComplete(String result, int statusCode, int requestCode) throws JSONException {
                                             if (statusCode == 200) {
-                                                Log.d("teste", result);
+
+                                                Gson gsonrcv = new Gson();
+                                                User rcv = gsonrcv.fromJson(result, User.class);
+
+                                                myCareerUtils.setUser(rcv);
+                                                Log.d("teste", rcv.getId());
+
+                                                if (myCareerUtils.getHolland()) {
+                                                /* Goes to Search page */
+                                                    Intent intent = new Intent(myCareer.getContext(), SearchActivity.class);
+                                                    startActivity(intent);
+                                                } else {
+                                                /* Start holland test */
+                                                    Intent intent = new Intent(myCareer.getContext(), PersonalityView.class);
+                                                    startActivity(intent);
+                                                }
                                             }
                                         }
 

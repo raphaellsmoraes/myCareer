@@ -52,8 +52,8 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
         mProgressBar = (ProgressBar) findViewById(R.id.pb_trending);
         mTextView = (TextView) findViewById(R.id.tv_search_description);
         mProgressBar.setVisibility(View.GONE);
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,7 +107,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
 
                     for (i = 0; i < mCareers.length(); i++) {
                         //Log.d("TESTE", "i" + i);
-                        String code = mCareers.getJSONObject(i).getString("code");
+                        final String code = mCareers.getJSONObject(i).getString("code");
 
                         /* Request a Profession*/
                         myCareerJSONObject requestObject =
@@ -141,6 +141,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
                                         public void onClick(View view) {
                                             Intent intent = new Intent(SearchActivity.this, ProfessionDetailsView.class);
                                             Bundle bundle = new Bundle();
+                                            bundle.putString(myCareerUtils.CODE, code);
                                             bundle.putString(myCareerUtils.TITLE, title);
                                             bundle.putString(myCareerUtils.WHATTHEYDO, newCard.getDescription());
                                             bundle.putStringArrayList(myCareerUtils.ONTHEJOB, tasks);

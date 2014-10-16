@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 public class User {
 
+    private String id;
+
     private String name;
 
     private String facebookId;
@@ -127,6 +129,28 @@ public class User {
     }
 
     public void setProfessions(ArrayList<Profession> professions) {
+        this.professions = professions;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public User(String id, String name, String facebookId, String birthday, ArrayList<FavoriteBooks> books, ArrayList<FavoriteMovies> movies, ArrayList<FavoriteMusics> music, ArrayList<FavoriteAthletes> favorite_athletes, Location location, String gender, ArrayList<Profession> professions) {
+        this.id = id;
+        this.name = name;
+        this.facebookId = facebookId;
+        this.birthday = birthday;
+        this.books = books;
+        this.movies = movies;
+        this.music = music;
+        this.favorite_athletes = favorite_athletes;
+        this.location = location;
+        this.gender = gender;
         this.professions = professions;
     }
 

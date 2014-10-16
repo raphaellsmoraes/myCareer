@@ -41,6 +41,8 @@ public class myCareerJSONRequest extends AsyncCommand {
     public static final String GET_KEYWORD_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/search?keyword=";
     public static final String MYCAREER_BASE_URL = "http://mycareer-mcwebservice.rhcloud.com";
     public static final String MYCAREER_ADD_USER = "/api/user/connect";
+    public static final String MYCAREER_UPDATE_PERSONALITY = "/api/user/updatePersonality?id=";
+    public static final String MYCAREER_UPDATE_RATING= "/api/user/updateRating?id=";
     public static final String MYCAREER_USER_RECOMMENDATION = "/api/user/recommendation";
     public static final String ONET_USERNAME = "puc_campinas_edu_br";
     public static final String ONET_PASSWORD = "sqh7482";

@@ -10,6 +10,16 @@ public class Personality {
     private Integer artistic;
     private Integer social;
     private Integer enterprising;
+    private Integer conventional;
+
+    public Personality(Integer realistic, Integer investigative, Integer artistic, Integer social, Integer enterprising, Integer conventional) {
+        this.realistic = realistic;
+        this.investigative = investigative;
+        this.artistic = artistic;
+        this.social = social;
+        this.enterprising = enterprising;
+        this.conventional = conventional;
+    }
 
     public Integer getRealistic() {
         return realistic;
@@ -49,5 +59,13 @@ public class Personality {
 
     public void setEnterprising(Integer enterprising) {
         this.enterprising = enterprising;
+    }
+
+    public Integer getConventional() {
+        return conventional;
+    }
+
+    public void setConventional(Integer conventional) {
+        this.conventional = conventional;
     }
 }
