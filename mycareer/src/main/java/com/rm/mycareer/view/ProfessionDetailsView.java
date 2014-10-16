@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.rm.mycareer.R;
+import com.rm.mycareer.model.Profession;
 import com.rm.mycareer.model.User;
 import com.rm.mycareer.utils.AsyncTaskCompleteListener;
 import com.rm.mycareer.utils.myCareerJSONObject;
@@ -48,6 +50,7 @@ public class ProfessionDetailsView extends BaseActivity {
         TextView tv_onthejob_task2 = (TextView) findViewById(R.id.tv_onthejob_task2);
         TextView tv_onthejob_task3 = (TextView) findViewById(R.id.tv_onthejob_task3);
         mProgressBar = (ProgressBar) findViewById(R.id.pb_trending);
+        ratingBar = (RatingBar) findViewById(R.id.rating_bar);
 
         ArrayList<String> tasks = bundle.getStringArrayList(myCareerUtils.ONTHEJOB);
         tv_title.setText(bundle.getString(myCareerUtils.TITLE));
@@ -60,6 +63,20 @@ public class ProfessionDetailsView extends BaseActivity {
         }
 
         code = bundle.getString(myCareerUtils.CODE);
+        //Log.d("code", code);
+
+        User user = myCareerUtils.getUser();
+        ArrayList<Profession> professions = user.getProfessions();
+        for (Profession profession : professions) {
+            //Log.d("code", "code: " + profession.getOccupation().getOnet_soc() + "/ rating: " + profession.getRating());
+            if (code.equals(profession.getOccupation().getOnet_soc())) {
+                Log.d("codeFinal", "rating: " + profession.getRating());
+                if (profession.getRating() != -1.0) {
+                    ratingBar.setRating((float) profession.getRating());
+                }
+            }
+        }
+
 
         addListenerOnRatingBar();
         mProgressBar.setVisibility(View.GONE);
@@ -68,12 +85,10 @@ public class ProfessionDetailsView extends BaseActivity {
 
     public void addListenerOnRatingBar() {
 
-        ratingBar = (RatingBar) findViewById(R.id.rating_bar);
-
         //if rating value is changed,
         //display the current rating value in the result (textview) automatically
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(RatingBar ratingBar, float rating,
+            public void onRatingChanged(RatingBar ratingBar, final float rating,
                                         boolean fromUser) {
 
                 Log.d("teste", "rating: " + String.valueOf(rating) + "-" + code);
@@ -94,7 +109,7 @@ public class ProfessionDetailsView extends BaseActivity {
                             Gson gson1 = new Gson();
                             User user1 = gson1.fromJson(result, User.class);
                             myCareerUtils.setUser(user1);
-                            Log.d("teste", user1.getProfessions().toString());
+                            Toast.makeText(getApplicationContext(), "Rated : " + rating, Toast.LENGTH_SHORT).show();
                         }
                     }
 
