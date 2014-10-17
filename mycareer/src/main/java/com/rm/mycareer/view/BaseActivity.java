@@ -154,6 +154,7 @@ public class BaseActivity extends FragmentActivity {
         onClickTrending();
         onClickSearch();
         onClickPersonalityTest();
+        onClickRecommendation();
     }
 
     public void onClickTrending() {
@@ -187,6 +188,18 @@ public class BaseActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onClickRecommendation() {
+    /* Setting up menu */
+        RelativeLayout mTrending = (RelativeLayout) findViewById(R.id.rl_recommendation);
+        mTrending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RecommendationActivity.class);
                 startActivity(intent);
             }
         });

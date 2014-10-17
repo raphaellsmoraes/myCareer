@@ -40,6 +40,12 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".view.RecommendationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Mycareer"></activity>
+
         <activity
             android:name="com.rm.mycareer.view.PersonalityCompleteView"
             android:screenOrientation="portrait"
