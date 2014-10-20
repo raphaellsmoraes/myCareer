@@ -39,6 +39,8 @@ public class myCareerJSONRequest extends AsyncCommand {
     public static final String GET_FB_PICTURE = "https://graph.facebook.com/%s/picture?type=large";
     public static final String GET_CAREER_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";
     public static final String GET_KEYWORD_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/search?keyword=";
+    public static final String GET_ONET_OCCUPATION_BASE_URL = "http://services.onetcenter.org/ws/online/occupations/";
+    public static final String GET_ONET_OCCUPATION_TASKS = "/summary/tasks";
     public static final String MYCAREER_BASE_URL = "http://mycareer-mcwebservice.rhcloud.com";
     public static final String MYCAREER_ADD_USER = "/api/user/connect";
     public static final String MYCAREER_UPDATE_PERSONALITY = "/api/user/updatePersonality?id=";

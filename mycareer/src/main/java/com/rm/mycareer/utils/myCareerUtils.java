@@ -29,6 +29,9 @@ public class myCareerUtils {
     public static final String ONTHEJOB = "ONTHEJOB";
     public static final String CODE = "CODE";
     public static final String SKILLS = "SKILLS";
+    public static final String TYPE = "TYPE";
+    public static final String KEYWORD = "KEYWORD";
+    public static final String RECOMMEND = "RECOMMEND";
     public static final String APP_ID = getStringResourceByName("app_id");
     public static final String SH_MYCAREER = "MyCareerKey";
     public static final String SH_MYCAREER_USER = "MyCareerUser";

@@ -141,6 +141,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
                                         public void onClick(View view) {
                                             Intent intent = new Intent(SearchActivity.this, ProfessionDetailsView.class);
                                             Bundle bundle = new Bundle();
+                                            bundle.putString(myCareerUtils.TYPE, myCareerUtils.KEYWORD);
                                             bundle.putString(myCareerUtils.CODE, code);
                                             bundle.putString(myCareerUtils.TITLE, title);
                                             bundle.putString(myCareerUtils.WHATTHEYDO, newCard.getDescription());

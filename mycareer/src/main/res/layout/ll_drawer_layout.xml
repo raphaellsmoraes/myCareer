@@ -34,7 +34,7 @@
                         android:id="@+id/top_profile_iv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"/>
+                        android:scaleType="fitXY" />
 
                     <RelativeLayout
                         android:id="@+id/top_profile_rl"
@@ -59,7 +59,8 @@
                             android:layout_toRightOf="@+id/profile_pic"
                             android:gravity="center_vertical|center_horizontal"
                             android:text="Raphael Moraes"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@android:color/white"
+                            android:shadowColor="@android:color/black"
                             android:textSize="18sp" />
 
                     </RelativeLayout>
@@ -75,13 +76,14 @@
             <RelativeLayout
                 android:id="@+id/rl_trending"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableLeft="@drawable/pin_white"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/fire_trending"
+                    android:drawablePadding="6dp"
                     android:gravity="center_vertical"
                     android:text="@string/menu_trending"
                     android:textColor="@color/holo_black" />
@@ -100,13 +102,15 @@
             <RelativeLayout
                 android:id="@+id/rl_recommendation"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:drawableLeft="@drawable/thumb_up_white"
+                    android:drawableLeft="@drawable/target"
+                    android:layout_marginLeft="2dp"
+                    android:drawablePadding="4dp"
                     android:gravity="center_vertical"
                     android:text="@string/menu_recommendations"
                     android:textColor="@color/holo_black" />
@@ -125,13 +129,15 @@
             <RelativeLayout
                 android:id="@+id/rl_history"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/menu_margin">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical|center_horizontal"
+                    android:gravity="center_vertical"
+                    android:drawableLeft="@drawable/search_icon"
+                    android:drawablePadding="6dp"
                     android:text="@string/menu_history"
                     android:textColor="@color/holo_black" />
 
