@@ -67,10 +67,15 @@ public class PersonalityCompleteView extends Activity {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle bundle = getIntent().getExtras();
-        hollandSelection = bundle.getBooleanArray(myCareerUtils.PERSONALITY);
         answerList = (ListView) findViewById(R.id.lv_personality);
-        buildRIASEC();
+
+        Bundle bundle = getIntent().getExtras();
+        if (myCareerUtils.getHolland()) {
+            buildFromResource();
+        } else {
+            hollandSelection = bundle.getBooleanArray(myCareerUtils.PERSONALITY);
+            buildRIASEC();
+        }
     }
 
 
@@ -274,6 +279,116 @@ public class PersonalityCompleteView extends Activity {
         slice = new PieSlice();
         slice.setColor(Color.parseColor("#BBFF33"));
         slice.setValue(hollandArray[conventional]);
+        slice.setTitle(new String("Conventional"));
+        pg.addSlice(slice);
+
+    }
+
+    private void buildFromResource() {
+
+        Map<String, Integer> hollandMap = myCareerUtils.getHollandValue();
+
+        /* returns your riasec type */
+        Map<String, Integer> returnMap = sortByValue(hollandMap);
+        final PersonalityListAdapter adapter = new PersonalityListAdapter(returnMap);
+        answerList.setAdapter(adapter);
+        final Context context = this;
+        answerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                LayoutInflater inflater = getLayoutInflater();
+                View inflaterView = inflater.inflate(R.layout.personality_card_layout, null);
+
+                TextView textHeader = (TextView) inflaterView.findViewById(R.id.tv_card_header);
+                TextView textDesc = (TextView) inflaterView.findViewById(R.id.tv_card_desc);
+
+
+                Log.d("teste", adapter.getItem(i).toString());
+
+                if (adapter.getItem(i).toString().equals(sRealistic)) {
+                    textHeader.setText(R.string.realistic_header);
+                    textDesc.setText(R.string.realistic_description);
+                } else if (adapter.getItem(i).toString().equals(sInvestigative)) {
+                    textHeader.setText(R.string.investigative_header);
+                    textDesc.setText(R.string.investigative_description);
+                } else if (adapter.getItem(i).toString().equals(sArtistic)) {
+                    textHeader.setText(R.string.artistic_header);
+                    textDesc.setText(R.string.artistic_description);
+                } else if (adapter.getItem(i).toString().equals(sSocial)) {
+                    textHeader.setText(R.string.social_header);
+                    textDesc.setText(R.string.social_description);
+                } else if (adapter.getItem(i).toString().equals(sEnterprising)) {
+                    textHeader.setText(R.string.enterprising_header);
+                    textDesc.setText(R.string.enterprising_description);
+                } else if (adapter.getItem(i).toString().equals(sConventional)) {
+                    textHeader.setText(R.string.conventional_header);
+                    textDesc.setText(R.string.conventional_description);
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setView(inflaterView)
+                        .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                builder.create();
+                builder.show();
+            }
+        });
+
+        buildGraphFromResource();
+    }
+
+    private void buildGraphFromResource() {
+
+        Map<String, Integer> hollandMap = myCareerUtils.getHollandValue();
+
+        PieGraph pg = (PieGraph) findViewById(R.id.graph);
+        pg.setInnerCircleRatio(150);
+
+        /* realistic */
+        PieSlice slice = new PieSlice();
+        slice.setColor(Color.parseColor("#99CC00"));
+        slice.setValue(hollandMap.get(sRealistic));
+        slice.setTitle(new String("Realistic"));
+        pg.addSlice(slice);
+
+        /* investigative */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#FFBB33"));
+        slice.setValue(hollandMap.get(sInvestigative));
+        slice.setTitle(new String("Investigative"));
+        pg.addSlice(slice);
+
+        /* artistic */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#AA66CC"));
+        slice.setValue(hollandMap.get(sArtistic));
+        slice.setTitle(new String("Artistic"));
+        pg.addSlice(slice);
+
+        /* social */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#DDFFAA"));
+        slice.setValue(hollandMap.get(sSocial));
+        slice.setTitle(new String("Social"));
+        pg.addSlice(slice);
+
+        /* enterprising */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#FF0033"));
+        slice.setValue(hollandMap.get(sEnterprising));
+        slice.setTitle(new String("Enterprising"));
+        pg.addSlice(slice);
+
+        /* conventional */
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#BBFF33"));
+        slice.setValue(hollandMap.get(sConventional));
         slice.setTitle(new String("Conventional"));
         pg.addSlice(slice);
 

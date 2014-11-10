@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.rm.mycareer.model.User;
 import com.rm.mycareer.myCareer;
 
@@ -129,7 +130,7 @@ public class myCareerUtils {
 
         if (value != null) {
             Gson gson = new Gson();
-            Map<String, Integer> mapHolland = gson.fromJson(value, Map.class);
+            Map<String, Integer> mapHolland = gson.fromJson(value,  new TypeToken<Map<String,Integer>>() { }.getType());
             return mapHolland;
         }
 

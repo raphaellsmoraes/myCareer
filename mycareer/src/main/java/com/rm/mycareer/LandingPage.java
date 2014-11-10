@@ -1,7 +1,6 @@
 package com.rm.mycareer;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -9,13 +8,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.Button;
 
 import com.facebook.HttpMethod;
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
-import com.facebook.android.Facebook;
 import com.facebook.model.GraphObject;
 import com.google.gson.Gson;
 import com.rm.mycareer.model.FavoriteAthletes;
@@ -43,11 +40,7 @@ import java.util.List;
 
 public class LandingPage extends FragmentActivity {
 
-    private Facebook facebook;
-    private SharedPreferences prefs;
-    private Button loginButton;
-
-    private static final List<String> PERMISSIONS = Arrays.asList("user_location", "user_birthday", "user_likes", "user_interests", "friends_interests");
+    private static final List<String> PERMISSIONS = Arrays.asList("user_about_me", "user_interests", "user_likes", "user_birthday", "user_location", "user_actions.books", "user_actions.music");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +71,10 @@ public class LandingPage extends FragmentActivity {
                     /* Request user by fb id if user exists goes to search
                     * else add new user */
 
+                Session.NewPermissionsRequest newPermissionsRequest = new
+                        Session.NewPermissionsRequest(this, PERMISSIONS);
+
+                Session.getActiveSession().requestNewReadPermissions(newPermissionsRequest);
 
                 Bundle params = new Bundle();
                 params.putString("fields", "id,name,birthday,location,books{id,name},movies{id,name},music{id,name},favorite_athletes,gender");
@@ -106,7 +103,7 @@ public class LandingPage extends FragmentActivity {
                                     String name = user.getString("name");
 
                                         /* Birthday */
-                                    String birthday = user.getString("birthday");
+                                    String birthday = ""; //user.getString("birthday");
 
                                         /* Location */
                                     String location = user.getString("location");

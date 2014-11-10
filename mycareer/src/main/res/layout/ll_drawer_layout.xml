@@ -203,7 +203,8 @@
                 android:id="@+id/rl_personality_retake"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="@dimen/menu_margin">
+                android:layout_marginTop="@dimen/menu_margin"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -227,7 +228,8 @@
                 android:id="@+id/rl_friends"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="@dimen/margin_default">
+                android:layout_marginTop="@dimen/margin_default"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -250,7 +252,8 @@
                 android:id="@+id/rl_friends_popular"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="@dimen/menu_margin">
+                android:layout_marginTop="@dimen/menu_margin"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -274,7 +277,8 @@
                 android:id="@+id/rl_friends_spotlight"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="@dimen/menu_margin">
+                android:layout_marginTop="@dimen/menu_margin"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"

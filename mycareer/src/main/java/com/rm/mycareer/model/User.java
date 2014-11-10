@@ -170,4 +170,14 @@ public class User {
                 ", professions=" + professions +
                 '}';
     }
+
+
+    public Boolean hasRated() {
+        for (Profession n : professions) {
+            if (n.getRating() != -1) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

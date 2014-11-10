@@ -40,6 +40,13 @@ public class myCareerJSONRequest extends AsyncCommand {
     public static final String GET_CAREER_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/careers/";
     public static final String GET_KEYWORD_ONET_BASE_URL = "http://services.onetcenter.org/v1.3/ws/mnm/search?keyword=";
     public static final String GET_ONET_OCCUPATION_BASE_URL = "http://services.onetcenter.org/ws/online/occupations/";
+    public static final String GET_INTEREST_PROFILER_BASE_URL = "https://services.onetcenter.org/ws/mnm/interestprofiler/careers?";
+    public static final String GET_REALISTIC = "Realistic=";
+    public static final String GET_INVESTIGATIVE = "Investigative=";
+    public static final String GET_ARTISTIC = "Artistic=";
+    public static final String GET_SOCIAL = "Social=";
+    public static final String GET_ENTERPRISING = "Enterprising=";
+    public static final String GET_CONVETIONAL = "Conventional=";
     public static final String GET_ONET_OCCUPATION_TASKS = "/summary/tasks";
     public static final String MYCAREER_BASE_URL = "http://mycareer-mcwebservice.rhcloud.com";
     public static final String MYCAREER_ADD_USER = "/api/user/connect";
@@ -47,7 +54,7 @@ public class myCareerJSONRequest extends AsyncCommand {
     public static final String MYCAREER_UPDATE_RATING = "/api/user/updateRating?id=";
     public static final String MYCAREER_USER_RECOMMENDATION = "/api/user/recommendations?id=";
     public static final String ONET_USERNAME = "puc_campinas_edu_br";
-    public static final String ONET_PASSWORD = "sqh7482";
+    public static final String ONET_PASSWORD = "6392kpv";
 
     //Request Type
     public enum RequestType {
@@ -55,6 +62,7 @@ public class myCareerJSONRequest extends AsyncCommand {
         ONET,
         POST,
         DELETE,
+        ONET_INTEREST,
         PUT;
     }
 
@@ -172,7 +180,26 @@ public class myCareerJSONRequest extends AsyncCommand {
                         return true;
                     }
                     break;
+                case ONET_INTEREST:
+                    Log.i(TAG, "myCareer ONET GET ");
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.setUseCaches(false);
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestProperty("Content-Type", "application/xml");
 
+                    String auth = ONET_USERNAME + ":" + ONET_PASSWORD;
+                    String encodedAuth = new String(Base64.encode(auth.getBytes(), 0));
+                    urlConnection.setRequestProperty("Authorization", "Basic " + encodedAuth);
+
+                    if (responseStr.length() > 0) {
+                        Log.d(TAG, "Response from cache: " + responseStr);
+                        mStatusCode = 200;
+                        returnListener = responseStr;
+                        return true;
+                    }
+                    break;
+                
                 case GET:
                 default:
                     Log.i(TAG, "myCareer GET ");
