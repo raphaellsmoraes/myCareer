@@ -33,6 +33,7 @@ public class myCareerUtils {
     public static final String TYPE = "TYPE";
     public static final String KEYWORD = "KEYWORD";
     public static final String RECOMMEND = "RECOMMEND";
+    public static final String HOLLAND = "HOLLAND";
     public static final String APP_ID = getStringResourceByName("app_id");
     public static final String SH_MYCAREER = "MyCareerKey";
     public static final String SH_MYCAREER_USER = "MyCareerUser";
@@ -130,7 +131,8 @@ public class myCareerUtils {
 
         if (value != null) {
             Gson gson = new Gson();
-            Map<String, Integer> mapHolland = gson.fromJson(value,  new TypeToken<Map<String,Integer>>() { }.getType());
+            Map<String, Integer> mapHolland = gson.fromJson(value, new TypeToken<Map<String, Integer>>() {
+            }.getType());
             return mapHolland;
         }
 

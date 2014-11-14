@@ -48,6 +48,7 @@ public class myCareerJSONRequest extends AsyncCommand {
     public static final String GET_ENTERPRISING = "Enterprising=";
     public static final String GET_CONVETIONAL = "Conventional=";
     public static final String GET_ONET_OCCUPATION_TASKS = "/summary/tasks";
+    public static final String GET_MYCAREER_OCCUPATION = "/api/user/connect/";
     public static final String MYCAREER_BASE_URL = "http://mycareer-mcwebservice.rhcloud.com";
     public static final String MYCAREER_ADD_USER = "/api/user/connect";
     public static final String MYCAREER_UPDATE_PERSONALITY = "/api/user/updatePersonality?id=";
@@ -199,7 +200,7 @@ public class myCareerJSONRequest extends AsyncCommand {
                         return true;
                     }
                     break;
-                
+
                 case GET:
                 default:
                     Log.i(TAG, "myCareer GET ");

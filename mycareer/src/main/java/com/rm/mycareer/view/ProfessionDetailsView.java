@@ -94,6 +94,37 @@ public class ProfessionDetailsView extends BaseActivity {
 
             addListenerOnRatingBar();
             mProgressBar.setVisibility(View.GONE);
+
+        } else if (type.equals(myCareerUtils.HOLLAND)) {
+
+            TextView tv_title = (TextView) findViewById(R.id.tv_title);
+            TextView tv_description = (TextView) findViewById(R.id.tv_description);
+            mProgressBar = (ProgressBar) findViewById(R.id.pb_trending);
+            ratingBar = (RatingBar) findViewById(R.id.rating_bar);
+
+            tv_title.setText(bundle.getString(myCareerUtils.TITLE));
+
+            code = bundle.getString(myCareerUtils.CODE);
+
+            User user = myCareerUtils.getUser();
+            ArrayList<Profession> professions = user.getProfessions();
+            for (Profession profession : professions) {
+                Log.d("code", "code: " + profession.getOccupation().getOnet_soc() + "/ desc: " + profession.getOccupation().getDescription());
+                if (code.equals(profession.getOccupation().getOnet_soc())) {
+                    Log.d("codeFinal", "rating: " + profession.getRating());
+                    tv_description.setText(profession.getOccupation().getDescription());
+
+                    if (profession.getRating() != -1.0) {
+                        ratingBar.setRating((float) profession.getRating());
+                    }
+                }
+            }
+
+
+            addListenerOnRatingBar();
+            mProgressBar.setVisibility(View.GONE);
+
+
         } else if (type.equals(myCareerUtils.RECOMMEND)) {
 
             code = bundle.getString(myCareerUtils.CODE);

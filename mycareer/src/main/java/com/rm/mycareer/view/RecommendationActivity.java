@@ -139,22 +139,21 @@ public class RecommendationActivity extends BaseActivity {
 
                             JSONObject mHolland = jsonObj.getJSONObject("careers").getJSONArray("career").getJSONObject(i);
                             final String title = mHolland.getString("title");
+                            final String code = mHolland.getString("code");
 
                             final CardPlay newCard = new CardPlay(title, "", "RED", "BLACK", false, true);
-                        /*  newCard.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent = new Intent(SearchActivity.this, ProfessionDetailsView.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putString(myCareerUtils.TYPE, myCareerUtils.KEYWORD);
-                                bundle.putString(myCareerUtils.CODE, code);
-                                bundle.putString(myCareerUtils.TITLE, title);
-                                bundle.putString(myCareerUtils.WHATTHEYDO, newCard.getDescription());
-                                bundle.putStringArrayList(myCareerUtils.ONTHEJOB, tasks);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
-                            }
-                        });*/
+                            newCard.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(RecommendationActivity.this, ProfessionDetailsView.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString(myCareerUtils.TYPE, myCareerUtils.HOLLAND);
+                                    bundle.putString(myCareerUtils.CODE, code);
+                                    bundle.putString(myCareerUtils.TITLE, title);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                }
+                            });
 
                             mCardView.addCard(newCard);
                         }
