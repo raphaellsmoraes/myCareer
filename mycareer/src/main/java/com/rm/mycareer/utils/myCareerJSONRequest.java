@@ -54,6 +54,7 @@ public class myCareerJSONRequest extends AsyncCommand {
     public static final String MYCAREER_UPDATE_PERSONALITY = "/api/user/updatePersonality?id=";
     public static final String MYCAREER_UPDATE_RATING = "/api/user/updateRating?id=";
     public static final String MYCAREER_USER_RECOMMENDATION = "/api/user/recommendations?id=";
+    public static final String MYCAREER_TRENDING = "/api/user/trending";
     public static final String ONET_USERNAME = "puc_campinas_edu_br";
     public static final String ONET_PASSWORD = "6392kpv";
 

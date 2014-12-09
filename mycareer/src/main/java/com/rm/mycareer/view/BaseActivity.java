@@ -164,7 +164,7 @@ public class BaseActivity extends FragmentActivity {
         mTrending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TrendingActivity.class);
                 startActivity(intent);
             }
         });
